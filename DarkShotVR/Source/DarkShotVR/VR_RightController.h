@@ -16,7 +16,7 @@ class DARKSHOTVR_API AVR_RightController : public AActor
 public:
 
     UPROPERTY()
-        class AVR_PlayerChaperone* VR_PlayerChaperone;
+    class AVR_PlayerChaperone* VR_PlayerChaperone;
     // Sets default values for this actor's properties
     AVR_RightController();
 
@@ -36,6 +36,7 @@ public:
     UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
     
+    void AttachToBow();
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class UMotionControllerComponent* MControllerRight;
 	
@@ -44,4 +45,6 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USphereComponent* CollisionComp;
+
+    bool LockArrowToBowLocation;
 };

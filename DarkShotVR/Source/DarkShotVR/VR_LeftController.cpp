@@ -11,7 +11,7 @@ AVR_LeftController::AVR_LeftController()
 	PrimaryActorTick.bCanEverTick = true;
     MControllerLeft = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("MControllerLeft"));
     MControllerLeft->Hand = EControllerHand::Left;
-    ControllerMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+    BowMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BowMesh"));
 
     CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComp"));
     CollisionComp->InitSphereRadius(5.0f);

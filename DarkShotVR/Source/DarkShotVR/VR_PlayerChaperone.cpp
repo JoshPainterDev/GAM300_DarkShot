@@ -36,8 +36,6 @@ void AVR_PlayerChaperone::Tick( float DeltaTime )
         CameraComp->SetRelativeLocationAndRotation(HMDLocation, HMDOrientation);
         CameraComp->SetWorldLocationAndRotation(HMDLocation, HMDOrientation);
     }
-
-
 }
 
 // Called to bind functionality to input

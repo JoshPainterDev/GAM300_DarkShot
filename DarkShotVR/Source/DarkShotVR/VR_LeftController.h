@@ -38,16 +38,5 @@ public:
     class USphereComponent* CollisionComp;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-    class UStaticMeshComponent* ControllerMesh;
-
-
-
-
-
-
-
-    void GrabArrow()
-    {
-
-    }
+    class USkeletalMeshComponent* BowMesh;
 };

@@ -63,6 +63,7 @@ void AProjectileArrow::FollowRightMotionController()
 
 void AProjectileArrow::SnapToBow()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("AIM"));
+
+    //GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("AIM"));
 }
 
