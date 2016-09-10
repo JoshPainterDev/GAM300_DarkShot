@@ -13,12 +13,12 @@ AVR_LeftController::AVR_LeftController()
     MControllerLeft->Hand = EControllerHand::Left;
     BowMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BowMesh"));
 
-    CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("CollisionComp"));
-    CollisionComp->InitSphereRadius(5.0f);
-   // CollisionComp->BodyInstance.SetCollisionProfileName("LeftMotionController");
-    CollisionComp->OnComponentHit.AddDynamic(this, &AVR_LeftController::OnHit);
-    CollisionComp->OnComponentBeginOverlap.AddDynamic(this, &AVR_LeftController::OnOverlapBegin);
-    CollisionComp->bGenerateOverlapEvents = true;
+    LeftCollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("LeftCollisionComponent"));
+	LeftCollisionComp->InitSphereRadius(5.0f);
+    //CollisionComp->BodyInstance.SetCollisionProfileName("LeftMotionController");
+	LeftCollisionComp->OnComponentHit.AddDynamic(this, &AVR_LeftController::OnHit);
+	LeftCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &AVR_LeftController::OnOverlapBegin);
+	LeftCollisionComp->bGenerateOverlapEvents = true;
     SetActorEnableCollision(true);
 }
 
@@ -43,13 +43,13 @@ void AVR_LeftController::Tick( float DeltaTime )
 
 void AVR_LeftController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-    for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
+   /* for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
     {
         FString s = Iterator->Get()->GetName();
         GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, s);
         if ( s == "VR_PlayerChaperone_0")
             GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("VR_PlayerChaperone")); //i = 0; Iterator->Get(//->arrow->current_arrow_state = AProjectileArrow::State::AIM;
-    }
+    }*/
 }
 
 void AVR_LeftController::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)

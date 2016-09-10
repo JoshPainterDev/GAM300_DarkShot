@@ -36,7 +36,8 @@ public:
     UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
     
-    void AttachToBow();
+	bool CheckForSnappingToBow();
+   // void AttachToBow();
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class UMotionControllerComponent* MControllerRight;
 	
@@ -44,7 +45,8 @@ public:
     class UStaticMeshComponent* ControllerMesh;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-    class USphereComponent* CollisionComp;
+    class USphereComponent* RightCollisionComp;
+
 
     bool LockArrowToBowLocation;
 };

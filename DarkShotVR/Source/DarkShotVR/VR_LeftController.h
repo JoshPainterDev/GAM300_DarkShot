@@ -35,7 +35,7 @@ public:
     class UMotionControllerComponent* MControllerLeft;
 
     UPROPERTY(VisibleAnywhere)
-    class USphereComponent* CollisionComp;
+    class USphereComponent* LeftCollisionComp;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USkeletalMeshComponent* BowMesh;

@@ -13,6 +13,7 @@ AVR_PlayerChaperone::AVR_PlayerChaperone()
 	PrimaryActorTick.bCanEverTick = true;
     SteamVRChaperone = CreateDefaultSubobject<USteamVRChaperoneComponent>(TEXT("SteamVRChaperone"));
     CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
+	arrow = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -39,20 +40,20 @@ void AVR_PlayerChaperone::Tick( float DeltaTime )
 }
 
 // Called to bind functionality to input
-void AVR_PlayerChaperone::SetupPlayerInputComponent(class UInputComponent* InputComponent)
+void AVR_PlayerChaperone::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
     InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::GrabArrow);
-    InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
+   InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
 	//Super::SetupPlayerInputComponent(InputComponent);
 
 }
 
 void AVR_PlayerChaperone::GrabArrow()
 {
-    if (arrow)
-        return;
+	//if (arrow == nullptr)
+		SpawnArrow();
     // check to see if I can grab an arrow
-    SpawnArrow();
+   // SpawnArrow();
     /*
     FVector pos;
     FRotator orientation;

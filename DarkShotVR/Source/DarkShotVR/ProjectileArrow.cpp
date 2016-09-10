@@ -32,7 +32,6 @@ void AProjectileArrow::Tick( float DeltaTime )
     {
     case FOLLOW:
         FollowRightMotionController();
-       // GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("FOLLOW"));
         break;
     case AIM:
         SnapToBow();
@@ -63,7 +62,24 @@ void AProjectileArrow::FollowRightMotionController()
 
 void AProjectileArrow::SnapToBow()
 {
+	FVector righthand_pos;
+	FRotator righthand_orientation;
+	FVector lefthand_pos;
+	FRotator lefthand_orientation;
+	if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Right, righthand_pos, righthand_orientation))
+	{
+		if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Left, lefthand_pos, lefthand_orientation))
+		{
+			FVector new_locked_arrow_pos = lefthand_pos;
+			if (righthand_pos.Y > lefthand_pos.Y + 20)
+				new_locked_arrow_pos.Y = lefthand_pos.Y + 20;
+			else
+				new_locked_arrow_pos.Y = righthand_pos.Y;
 
+			lefthand_orientation.Yaw += 45;
+			SetActorLocationAndRotation(new_locked_arrow_pos, lefthand_orientation);
+		}
+	}
     //GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("AIM"));
 }
 
