@@ -1,0 +1,8 @@
+*.sdf
+*.suo
+*.sln
+*/Binaries*
+*/DerivedDataCache*
+*/Intermediate*
+*/Saved*
+DarkShotVR/Intermediate/CachedAssetRegistry.bin
