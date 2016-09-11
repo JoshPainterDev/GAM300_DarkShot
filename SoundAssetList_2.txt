@@ -1,0 +1,14 @@
+Sound Asset List:
+-----------------
+
+- sterotypical elevator music
+- bullet train/light rail:
+  - distant train coming in
+  - train decelleration and acceleration
+  - fancy future train doors sealing/unsealing
+
+- ambient city white noise
+- light flicker
+- electricity (think starwars lightning)
+- start on in game music or evne menu music that fits the sci-fi theme? (I know we dont have a lot to go off of yet....)
+  
