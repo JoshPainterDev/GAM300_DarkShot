@@ -7,20 +7,27 @@
 // Sets default values
 AProjectileArrow::AProjectileArrow()
 {
-    PrimaryActorTick.bCanEverTick = true;
-    
-    StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
+	PrimaryActorTick.bCanEverTick = true;
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
+	ArrowSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ArrowSceneComponent"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("StaticMesh'/Game/ViveMaterials/arrowTest_01.arrowTest_01'"));
 
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("StaticMesh'/Game/ViveMaterials/arrowTest_01.arrowTest_01'"));
-    StaticMesh->SetStaticMesh(SphereVisualAsset.Object);
-    current_arrow_state = FOLLOW;
+	StaticMesh->SetStaticMesh(SphereVisualAsset.Object);
+	current_arrow_state = FOLLOW;
 }
 
 // Called when the game starts or when spawned
 void AProjectileArrow::BeginPlay()
 {
 	Super::BeginPlay();
-
+	for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+	{
+		if (ActorItr->GetName() == "VR_LeftController_1")
+		{
+			BowScene = ActorItr->FindComponentByClass<USceneComponent>(); 
+			break;
+		}
+	}
 }
 
 // Called every frame
@@ -34,7 +41,7 @@ void AProjectileArrow::Tick( float DeltaTime )
         FollowRightMotionController();
         break;
     case AIM:
-        SnapToBow();
+     //   SnapToBow();
         break;
     case SHOOT:
         this->Destroy(true);
@@ -62,24 +69,13 @@ void AProjectileArrow::FollowRightMotionController()
 
 void AProjectileArrow::SnapToBow()
 {
-	FVector righthand_pos;
-	FRotator righthand_orientation;
-	FVector lefthand_pos;
-	FRotator lefthand_orientation;
-	if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Right, righthand_pos, righthand_orientation))
-	{
-		if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Left, lefthand_pos, lefthand_orientation))
-		{
-			FVector new_locked_arrow_pos = lefthand_pos;
-			if (righthand_pos.Y > lefthand_pos.Y + 20)
-				new_locked_arrow_pos.Y = lefthand_pos.Y + 20;
-			else
-				new_locked_arrow_pos.Y = righthand_pos.Y;
-
-			lefthand_orientation.Yaw += 45;
-			SetActorLocationAndRotation(new_locked_arrow_pos, lefthand_orientation);
-		}
-	}
-    //GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("AIM"));
+	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true);
+	AttachToComponent(BowScene, rules);
+	FRotator r;
+	r.Pitch = -90;
+	FVector l;
+	l.Z -= 45;
+	SetActorRelativeLocation(l);
+	SetActorRelativeRotation(r);
 }
 
