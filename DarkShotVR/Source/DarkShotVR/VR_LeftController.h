@@ -36,7 +36,8 @@ public:
 
     UPROPERTY(VisibleAnywhere)
     class USphereComponent* LeftCollisionComp;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class USceneComponent* BowSceneComponent;
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USkeletalMeshComponent* BowMesh;
 };

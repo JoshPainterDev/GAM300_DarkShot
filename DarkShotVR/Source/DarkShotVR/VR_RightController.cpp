@@ -21,10 +21,7 @@ AVR_RightController::AVR_RightController()
 	RightCollisionComp->OnComponentBeginOverlap.AddDynamic(this, &AVR_RightController::OnOverlapBegin);
 	RightCollisionComp->bGenerateOverlapEvents = true;
     SetActorEnableCollision(true);
-
     LockArrowToBowLocation = false;
-
-
 }
 
 // Called when the game starts or when spawned
@@ -50,16 +47,16 @@ void AVR_RightController::Tick( float DeltaTime )
 
 	if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Right, righthand_pos, righthand_orientation))
 	{
-		if (LockArrowToBowLocation == false) 
-		{ 
-			if (VR_PlayerChaperone->arrow)
+		if (VR_PlayerChaperone->arrow)
+		{
+			if (CheckForSnappingToBow())
 			{
-				if (CheckForSnappingToBow())
-					VR_PlayerChaperone->arrow->current_arrow_state = AProjectileArrow::State::AIM;
+				VR_PlayerChaperone->arrow->current_arrow_state = AProjectileArrow::State::AIM;
+				VR_PlayerChaperone->arrow->SnapToBow();
 			}
-			else
-				SetActorLocationAndRotation(righthand_pos, righthand_orientation);
 		}
+		else
+			SetActorLocationAndRotation(righthand_pos, righthand_orientation);
 	}
 }
 bool AVR_RightController::CheckForSnappingToBow()

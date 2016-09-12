@@ -12,7 +12,7 @@ AVR_LeftController::AVR_LeftController()
     MControllerLeft = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("MControllerLeft"));
     MControllerLeft->Hand = EControllerHand::Left;
     BowMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("BowMesh"));
-
+	BowSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("BowSceneComponent"));
     LeftCollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("LeftCollisionComponent"));
 	LeftCollisionComp->InitSphereRadius(5.0f);
     //CollisionComp->BodyInstance.SetCollisionProfileName("LeftMotionController");

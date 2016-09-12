@@ -21,6 +21,10 @@ class DARKSHOTVR_API AProjectileArrow : public AActor
    class UProjectileMovementComponent* ProjectileMovement;
 
 public:	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		class USceneComponent* ArrowSceneComponent;
+	USceneComponent* BowScene;
 	// Sets default values for this actor's properties
 	AProjectileArrow();
 
