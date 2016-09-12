@@ -8,26 +8,22 @@
 AProjectileArrow::AProjectileArrow()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
-	ArrowSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ArrowSceneComponent"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("StaticMesh'/Game/ViveMaterials/arrowTest_01.arrowTest_01'"));
+    
+    ArrowSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ArrowSceneComponent"));
 
+    StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereVisualAsset(TEXT("StaticMesh'/Game/ViveMaterials/arrowTest_01.arrowTest_01'"));
 	StaticMesh->SetStaticMesh(SphereVisualAsset.Object);
-	current_arrow_state = FOLLOW;
+	
+    current_arrow_state = FOLLOW;
 }
 
 // Called when the game starts or when spawned
 void AProjectileArrow::BeginPlay()
 {
+    BowScene = GetBowSceneComponent();
 	Super::BeginPlay();
-	for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
-	{
-		if (ActorItr->GetName() == "VR_LeftController_1")
-		{
-			BowScene = ActorItr->FindComponentByClass<USceneComponent>(); 
-			break;
-		}
-	}
+
 }
 
 // Called every frame
@@ -44,13 +40,15 @@ void AProjectileArrow::Tick( float DeltaTime )
      //   SnapToBow();
         break;
     case SHOOT:
-        this->Destroy(true);
+        Destroy(true);
         break;
     }
 }
 
 
-void AProjectileArrow::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+void AProjectileArrow::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, 
+                             UPrimitiveComponent* OtherComp, FVector NormalImpulse, 
+                             const FHitResult& Hit)
 {
     for (int i = 0; i < 2000; ++i)
         GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("COLLISION DETECTED"));
@@ -69,13 +67,39 @@ void AProjectileArrow::FollowRightMotionController()
 
 void AProjectileArrow::SnapToBow()
 {
-	FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepWorld, true);
-	AttachToComponent(BowScene, rules);
-	FRotator r;
-	r.Pitch = -90;
-	FVector l;
-	l.Z -= 45;
-	SetActorRelativeLocation(l);
-	SetActorRelativeRotation(r);
+    ParentObject();
+    UpdateRelativeLocationAndOrientation();
+}
+
+void AProjectileArrow::ParentObject()
+{
+    FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget,
+        EAttachmentRule::SnapToTarget,
+        EAttachmentRule::KeepWorld,
+        true);
+    AttachToComponent(BowScene, rules);
+}
+
+void AProjectileArrow::UpdateRelativeLocationAndOrientation()
+{   
+    FRotator r;
+    r.Pitch = -90;
+    FVector l;
+    l.Z -= 45;
+    SetActorRelativeLocation(l);
+    SetActorRelativeRotation(r);
+}
+
+USceneComponent* AProjectileArrow::GetBowSceneComponent()
+{
+    for (TActorIterator<AActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        if (ActorItr->GetName() == "VR_LeftController_1")
+        {
+            return ActorItr->FindComponentByClass<USceneComponent>();
+        }
+    }
+
+    return nullptr;
 }
 

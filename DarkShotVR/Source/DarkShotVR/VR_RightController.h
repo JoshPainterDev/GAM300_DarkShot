@@ -17,36 +17,40 @@ public:
 
     UPROPERTY()
     class AVR_PlayerChaperone* VR_PlayerChaperone;
-    // Sets default values for this actor's properties
+    
+    // DEFAULT FUNCTIONS    
     AVR_RightController();
-
-    // Called when the game starts or when spawned
     virtual void BeginPlay() override;
-
-    // Called every frame
     virtual void Tick(float DeltaSeconds) override;
 
-
-    UPROPERTY(BlueprintAssignable, Category = "Collision")
-        FComponentBeginOverlapSignature OnComponentBeginOverlap;
+    // COLLISION FUNCTIONS
     UFUNCTION()
     void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-
-    /** called when projectile hits something */
     UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
     
+    // MY FUNCTIONS
 	bool CheckForSnappingToBow();
-   // void AttachToBow();
+
+    AVR_PlayerChaperone* GetPlayerChaperone();
+
+    void UpdateLocationAndOrientation();
+    // VARIABLES
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-    class UMotionControllerComponent* MControllerRight;
-	
+    class UMotionControllerComponent* MControllerRight;	
+
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class UStaticMeshComponent* ControllerMesh;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USphereComponent* RightCollisionComp;
 
+    UPROPERTY(BlueprintAssignable, Category = "Collision")
+    FComponentBeginOverlapSignature OnComponentBeginOverlap;
 
     bool LockArrowToBowLocation;
+
+    FVector ControllerLocation;
+
+    FRotator ControllerOrientation;
 };

@@ -13,31 +13,42 @@ class DARKSHOTVR_API AVR_LeftController : public AActor
 	
 public:	
 
+    // FORWARD DECLERATION
     class AVR_PlayerChaperone;
-	// Sets default values for this actor's properties
+
+	// DEFAULT FUNCTIONS
 	AVR_LeftController();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
+    virtual void BeginPlay() override;
+	
+    virtual void Tick( float DeltaSeconds ) override;
 
-    UPROPERTY(BlueprintAssignable, Category = "Collision")
-        FComponentBeginOverlapSignature OnComponentBeginOverlap;
+    // COLLISION FUNCTIONS
     UFUNCTION()
-        void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    UFUNCTION()
+    void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+    
+    // MY FUNCTIONS
+    AVR_PlayerChaperone* GetPlayerChaperone();
+    void UpdateLocationAndOrientation();
+    // VARIABLES
 
-    /** called when projectile hits something */
-    UFUNCTION()
-        void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class UMotionControllerComponent* MControllerLeft;
 
     UPROPERTY(VisibleAnywhere)
     class USphereComponent* LeftCollisionComp;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		class USceneComponent* BowSceneComponent;
+	class USceneComponent* BowSceneComponent;
+
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USkeletalMeshComponent* BowMesh;
+
+    UPROPERTY(BlueprintAssignable, Category = "Collision")
+    FComponentBeginOverlapSignature OnComponentBeginOverlap;
+
+    FVector ControllerLocation;
+    FRotator ControllerOrientation;
 };

@@ -10,43 +10,52 @@ class DARKSHOTVR_API AProjectileArrow : public AActor
 {
 	GENERATED_BODY()
 	
-    // Sphere collision component 
+public:	
+    // DEFAULT FUNCTIONS
+	AProjectileArrow();
+
+	virtual void BeginPlay() override;
+
+	virtual void Tick( float DeltaSeconds ) override;
+    
+    // COLLISION FUNCTIONS
+    UFUNCTION()
+    void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+    // MY FUNCTIONS
+    bool CheckForSnappingToBow();
+
+    AVR_PlayerChaperone* GetPlayerChaperone();
+
+    void FollowRightMotionController();
+
+    void SnapToBow();
+
+    void ParentObject();
+
+    void UpdateRelativeLocationAndOrientation();
+
+    USceneComponent* GetBowSceneComponent();
+
+    FORCEINLINE class USphereComponent* GetCollisionComp() const { return CollisionComp; }
+
+    FORCEINLINE class UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+	
+    // VARIABLES AND ENUMS
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+    class USceneComponent* ArrowSceneComponent;
+
+    USceneComponent* BowScene;
+
     UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
     class USphereComponent* CollisionComp;
 
     UPROPERTY(VisibleDefaultsOnly)
-        class UStaticMeshComponent* StaticMesh;
-    /** Projectile movement component */
+    class UStaticMeshComponent* StaticMesh;
+
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
-   class UProjectileMovementComponent* ProjectileMovement;
+    class UProjectileMovementComponent* ProjectileMovement;
 
-public:	
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-		class USceneComponent* ArrowSceneComponent;
-	USceneComponent* BowScene;
-	// Sets default values for this actor's properties
-	AProjectileArrow();
-
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
-    
-    
-    /** called when projectile hits something */
-    UFUNCTION()
-    void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-
-    void FollowRightMotionController();
-    void SnapToBow();
-    // Returns CollisionComp subobject
-    FORCEINLINE class USphereComponent* GetCollisionComp() const { return CollisionComp; }
-    
-    // Returns ProjectileMovement subobject 
-    FORCEINLINE class UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
-	
     enum State
     {
         FOLLOW,

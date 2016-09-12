@@ -2,8 +2,7 @@
 
 #include "DarkShotVR.h"
 #include "VR_LeftController.h"
-
-
+s
 // Sets default values
 AVR_LeftController::AVR_LeftController()
 {
@@ -25,34 +24,42 @@ AVR_LeftController::AVR_LeftController()
 // Called when the game starts or when spawned
 void AVR_LeftController::BeginPlay()
 {
+    VR_PlayerChaperone = GetPlayerChaperone();
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AVR_LeftController::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
-    FVector pos;
-    FRotator orientation;
-    if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Left, pos, orientation))
-    {
-        SetActorLocationAndRotation(pos, orientation);
-    }
+    UpdateLocationAndOrientation();
 }
 
 void AVR_LeftController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-   /* for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
-    {
-        FString s = Iterator->Get()->GetName();
-        GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, s);
-        if ( s == "VR_PlayerChaperone_0")
-            GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Blue, TEXT("VR_PlayerChaperone")); //i = 0; Iterator->Get(//->arrow->current_arrow_state = AProjectileArrow::State::AIM;
-    }*/
 }
 
 void AVR_LeftController::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+}
 
+AVR_PlayerChaperone* AVR_LeftController::GetPlayerChaperone()
+{
+    for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
+    {
+        if (Iterator->Get()->GetName() == "VR_PlayerChaperone_0")
+        {
+            return Cast<AVR_PlayerChaperone>(Iterator->Get());
+        }
+    }
+
+    return nullptr;
+}
+
+void AVR_LeftController::UpdateLocationAndOrientation()
+{
+    if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Left, ControllerLocation, ControllerOrientation))
+    {
+        SetActorLocationAndRotation(ControllerLocation, ControllerOrientation);
+    }
 }

@@ -43,9 +43,8 @@ void AVR_PlayerChaperone::Tick( float DeltaTime )
 void AVR_PlayerChaperone::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
     InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::GrabArrow);
-   InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
+    InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
 	//Super::SetupPlayerInputComponent(InputComponent);
-
 }
 
 void AVR_PlayerChaperone::GrabArrow()
