@@ -2,7 +2,7 @@
 
 #include "DarkShotVR.h"
 #include "VR_LeftController.h"
-s
+
 // Sets default values
 AVR_LeftController::AVR_LeftController()
 {
@@ -24,7 +24,7 @@ AVR_LeftController::AVR_LeftController()
 // Called when the game starts or when spawned
 void AVR_LeftController::BeginPlay()
 {
-    VR_PlayerChaperone = GetPlayerChaperone();
+    //VR_PlayerChaperone = GetPlayerChaperone();
 	Super::BeginPlay();
 }
 
@@ -42,20 +42,20 @@ void AVR_LeftController::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAc
 void AVR_LeftController::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 }
-
+/*
 AVR_PlayerChaperone* AVR_LeftController::GetPlayerChaperone()
 {
     for (FConstPawnIterator Iterator = GetWorld()->GetPawnIterator(); Iterator; ++Iterator)
     {
         if (Iterator->Get()->GetName() == "VR_PlayerChaperone_0")
         {
-            return Cast<AVR_PlayerChaperone>(Iterator->Get());
+			return nullptr;// Cast<AVR_PlayerChaperone>(Iterator->Get());
         }
     }
 
     return nullptr;
 }
-
+*/
 void AVR_LeftController::UpdateLocationAndOrientation()
 {
     if (USteamVRFunctionLibrary::GetHandPositionAndOrientation(0, EControllerHand::Left, ControllerLocation, ControllerOrientation))

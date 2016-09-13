@@ -36,10 +36,10 @@ public:
     
     void SpawnArrow();
     UPROPERTY(EditAnywhere, Category = Projectile)
-        AProjectileArrow* arrow;
+    AProjectileArrow* arrow;
 
     UFUNCTION()
-        void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 private:
     UPROPERTY(VisibleAnywhere)
         class USteamVRChaperoneComponent* SteamVRChaperone;

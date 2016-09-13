@@ -12,7 +12,7 @@ AVR_RightController::AVR_RightController()
     MControllerRight = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("MControllerRight"));
     MControllerRight->Hand = EControllerHand::Right;
     ControllerMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
-
+	LeftHandSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("LeftHandSceneComponent"));
     RightCollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("RightCollisionComponent"));
 	RightCollisionComp->InitSphereRadius(5.0f);
   //  CollisionComp->BodyInstance.SetCollisionProfileName("RightMotionController");

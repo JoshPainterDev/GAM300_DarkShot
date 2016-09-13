@@ -68,13 +68,14 @@ void AVR_PlayerChaperone::GrabArrow()
 
 void AVR_PlayerChaperone::FireArrow()
 {
-
+	if (arrow)
+		arrow->ShootArrow();
 }
 
 void AVR_PlayerChaperone::SpawnArrow()
 {
     arrow = (AProjectileArrow*)GetWorld()->SpawnActor<AProjectileArrow>(AProjectileArrow::StaticClass(), HMDLocation, HMDOrientation);
-    arrow->current_arrow_state = AProjectileArrow::State::FOLLOW;
+	arrow->SnapToLeftHand();
 }
 
 void AVR_PlayerChaperone::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)

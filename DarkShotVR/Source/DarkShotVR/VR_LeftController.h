@@ -30,8 +30,9 @@ public:
     void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
     
     // MY FUNCTIONS
-    AVR_PlayerChaperone* GetPlayerChaperone();
-    void UpdateLocationAndOrientation();
+    //AVR_PlayerChaperone* GetPlayerChaperone();
+    
+	void UpdateLocationAndOrientation();
     // VARIABLES
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

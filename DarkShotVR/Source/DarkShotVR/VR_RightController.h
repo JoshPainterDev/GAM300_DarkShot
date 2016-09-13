@@ -41,6 +41,9 @@ public:
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class UStaticMeshComponent* ControllerMesh;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	class USceneComponent* LeftHandSceneComponent;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     class USphereComponent* RightCollisionComp;
