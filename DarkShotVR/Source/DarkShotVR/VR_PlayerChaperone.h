@@ -67,10 +67,10 @@ public:
 	void UpdateLeftMotionController();
 	void UpdateRightMotionController();
 	void GrabArrow();
-	void FireArrow();
+	void ShootArrow();
 	void SpawnArrow();
 	void SpawnAndAttachArrowToRightHand();
-
+	void ToggleEquipment();
 	UFUNCTION(BlueprintCallable, Category ="ArrowManager")
 		void UpdateTension(float DeltaTime);
 	UFUNCTION(BlueprintCallable, Category ="ArrowManager")

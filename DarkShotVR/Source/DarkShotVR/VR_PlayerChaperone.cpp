@@ -104,16 +104,26 @@ void AVR_PlayerChaperone::UpdateRightMotionController()
 void AVR_PlayerChaperone::GrabArrow()
 {
 }
-void AVR_PlayerChaperone::FireArrow()
+void AVR_PlayerChaperone::ShootArrow()
 {
+	if (_arrowManager->_isArrowAttachedToBow == true)
+		_arrowManager->ShootArrow();
 }
 void AVR_PlayerChaperone::SpawnArrow()
 {
-	if (DistanceBetweenRHandAndHMD() < MAXGRABDISTANCE)
-		if (_arrowManager->_isArrowAttachedToBow == false && _arrowManager->_isArrowAttachedToHand == false)
-			_arrowManager->SpawnAndAttachArrow();
+	if (_arrowManager->_isArrowAttachedToBow == false && _arrowManager->_isArrowAttachedToHand == false)
+		if (DistanceBetweenRHandAndHMD() < MAXGRABDISTANCE)
+			_arrowManager->SpawnAndAttachArrow(R_MotionControllerScene);
+
+	if (_arrowManager->_isArrowAttachedToHand == true)
+		if (DistanceBetweenHands() < 20)
+			_arrowManager->AttachToBow(L_MotionControllerScene);
 }
 
+void AVR_PlayerChaperone::ToggleEquipment()
+{
+	_arrowManager->ToggleEquipment(L_MotionControllerScene);
+}
 void AVR_PlayerChaperone::SpawnAndAttachArrowToRightHand()
 {
 }
@@ -190,7 +200,8 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 void AVR_PlayerChaperone::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
 	InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::SpawnArrow);
-	//InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
+	InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::ShootArrow);
+	InputComponent->BindAction("ToggleEquipment", IE_Pressed, this, &AVR_PlayerChaperone::ToggleEquipment);
 	Super::SetupPlayerInputComponent(InputComponent);
 }
 

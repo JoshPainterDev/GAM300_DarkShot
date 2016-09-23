@@ -63,12 +63,14 @@ public:
 
 	// Declarations of all Callable Functions useable in blueprints
 	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
-		void SpawnAndAttachArrow();
+		void SpawnAndAttachArrow(USceneComponent* R_MotionControllerScene);
 	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
-		void ActivateAbility();
+		void ToggleEquipment(USceneComponent* L_MotionControllerScene);
+	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
+		void ShootArrow();
 
-
-
+	AActor* CurrentArrow;
+	void AttachToBow(USceneComponent* L_MotionControllerScene);
 	// Sets default values for this component's properties
 	UArrowManager();
 	// Called when the game starts
@@ -80,4 +82,5 @@ public:
 
 private:
 	std::map<std::string, UBlueprint*> _arrowBlueprints;
+	bool _toggleEquipment; 
 };
