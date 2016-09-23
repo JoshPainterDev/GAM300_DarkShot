@@ -4,10 +4,6 @@
 
 #include "Components/ActorComponent.h"
 #include <map>
-// include all arrow .cpp and .h files here
-#include "StandardArrow.h"
-
-// end of all includes for arrow files
 #include "ArrowManager.generated.h"
 
 UENUM(BlueprintType)

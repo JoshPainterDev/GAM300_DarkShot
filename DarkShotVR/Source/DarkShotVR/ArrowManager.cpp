@@ -13,8 +13,8 @@ UArrowManager::UArrowManager()
 	PrimaryComponentTick.bCanEverTick = false;
 	
 	// Find all the arrows that we want to load
-	static ConstructorHelpers::FObjectFinder<UBlueprint> StandardArrow(TEXT("Blueprint'/Game/Blueprints/StandardArrow.StandardArrow'"));
-	static ConstructorHelpers::FObjectFinder<UBlueprint> ExplosiveArrow(TEXT("Blueprint'/Game/Blueprints/ExplosiveArrow.ExplosiveArrow'"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> StandardArrow(TEXT("Blueprint'/Game/Blueprints/Arrows/StandardArrow.StandardArrow'"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> ExplosiveArrow(TEXT("Blueprint'/Game/Blueprints/Arrows/ExplosiveArrow.ExplosiveArrow'"));
 	// End of finding arrows
 
 	// Now store them all into a map
