@@ -6,10 +6,10 @@
 #include "SteamVRChaperoneComponent.h"
 #include "SteamVRFunctionLibrary.h"
 #include "MotionControllerComponent.h"
+#include "ArrowManager.h"
 #include "VR_PlayerChaperone.generated.h"
 
 class UInputComponent;
-class AStandardArrow;
 UCLASS()
 class DARKSHOTVR_API AVR_PlayerChaperone : public ACharacter
 {
@@ -25,14 +25,12 @@ public:
 		class UMotionControllerComponent* L_MotionController;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		class UMotionControllerComponent* R_MotionController;
-	// End of Steam VR Vive Components
 
 	// Mesh Components For Motion Controllers
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 		class USkeletalMeshComponent* VR_Bow;
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 		class UStaticMeshComponent* VR_RightHand;
-	// End of Mesh Components For Motion Controllers
 
 	// Dummy Scene Components
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
@@ -41,27 +39,8 @@ public:
 		class USceneComponent* L_MotionControllerScene;
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly)
 		class USceneComponent* R_MotionControllerScene;
-
-	UPROPERTY(VisibleDefaultsOnly)
-		class UBlueprint* Arrow;
-	// End of Dummy Scene Components
-
-	// Arrow Projectile Class Setup and All Info Necessary for Shooting Arrows
-	UPROPERTY(EditAnywhere, Category = Projectile)
-		TSubclassOf<class AStandardArrow> _ArrowToSpawn;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool _isArrowAttachedToHand;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool _isArrowAttachedToBow;
-	// End of Arrow Projectile Class Setup
-
-
-	// Bow Animation Information Setup
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		bool _justReleased;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float _bowTension;
-	// End of Bow Animation Information 
+		class UArrowManager* _arrowManager;
 
 	// Struct used to store all the information needed for location and rotation
 	struct ViveInfo
@@ -76,14 +55,12 @@ public:
 		FRotator Right_Rotation;
 	};
 	ViveInfo _vive;
-	// End of Struct information and declaration for ViveInfo
 
 	// Default Functions
 	AVR_PlayerChaperone(); // Sets default values for this character's properties
 	virtual void BeginPlay() override; // Called when the game starts or when spawned
 	virtual void Tick(float DeltaSeconds) override; // Called every frame
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override; // Called to bind functionality to input
-	// End of Virtual Default Functions
 
 	// Helper Functions
 	void UpdateChaperone();
@@ -93,8 +70,15 @@ public:
 	void FireArrow();
 	void SpawnArrow();
 	void SpawnAndAttachArrowToRightHand();
-	// End of Helper Functions
 
+	UFUNCTION(BlueprintCallable, Category ="ArrowManager")
+		void UpdateTension(float DeltaTime);
+	UFUNCTION(BlueprintCallable, Category ="ArrowManager")
+		float DistanceBetweenRHandAndHMD();
+	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
+		float DistanceBetweenHands();
+	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
+		bool AttachToBowOrNot();
 	// Collision Event Functions
 	UFUNCTION()
 		void OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

@@ -3,6 +3,10 @@
 #include "DarkShotVR.h"
 #include "StandardArrow.h"
 
+#define MAXGRABDISTANCE 40
+#define TENSIONSCALE 20
+#define MAXTENSION	50
+
 // Sets default values
 AVR_PlayerChaperone::AVR_PlayerChaperone()
 {
@@ -56,17 +60,7 @@ AVR_PlayerChaperone::AVR_PlayerChaperone()
 	VR_Bow->SetAnimInstanceClass(AnimObj.Object->GeneratedClass);
 	// End of Mesh Setups
 
-	// Standard Arrow Blueprint Setup
-	static ConstructorHelpers::FObjectFinder<UBlueprint> MyBlueprint(TEXT("Blueprint'/Game/Blueprints/StandardArrow.StandardArrow'"));
-	Arrow = MyBlueprint.Object;
-	_isArrowAttachedToHand = false;
-	_isArrowAttachedToBow = false;
-	// End of Standard Arrow Blueprint Setup
-
-	// Bow Animation Info Intialization
-	_justReleased = false;
-	_bowTension = 0.0f;
-	// End of Bow Animation Info Init
+	_arrowManager = CreateDefaultSubobject<UArrowManager>(TEXT("ArrowManager"));
 }
 
 // Called when the game starts or when spawned
@@ -75,8 +69,6 @@ void AVR_PlayerChaperone::BeginPlay()
 	// tells the packaged build to use a head mounted display
 	GetWorld()->Exec(GetWorld(), TEXT("stereo on"));
 	Super::BeginPlay();
-	
-
 }
 
 void AVR_PlayerChaperone::UpdateChaperone()
@@ -117,22 +109,58 @@ void AVR_PlayerChaperone::FireArrow()
 }
 void AVR_PlayerChaperone::SpawnArrow()
 {
-	if (_isArrowAttachedToHand == false && _isArrowAttachedToBow == false)
-	{	
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, TEXT("Yo"));
-		FActorSpawnParameters SpawnParams;
-		SpawnParams.Instigator = this;
-		auto arrow = GetWorld()->SpawnActor(Arrow->GeneratedClass);
-		_isArrowAttachedToHand = true;
-	}
+	if (DistanceBetweenRHandAndHMD() < MAXGRABDISTANCE)
+		if (_arrowManager->_isArrowAttachedToBow == false && _arrowManager->_isArrowAttachedToHand == false)
+			_arrowManager->SpawnAndAttachArrow();
 }
 
 void AVR_PlayerChaperone::SpawnAndAttachArrowToRightHand()
 {
 }
+void AVR_PlayerChaperone::UpdateTension(float DeltaTime)
+{
+	float c = DeltaTime;
+	++c;
+	if(_arrowManager->_isArrowAttachedToBow == true)
+		_arrowManager->_bowTension = DistanceBetweenHands() - 20;
+	
+	// TODO: keep track of how long we are at max tension
+}
+float AVR_PlayerChaperone::DistanceBetweenHands()
+{
+	FVector length = _vive.Left_Location - _vive.Right_Location;
+	FVector dir;
+	float distance = 0;
+	length.ToDirectionAndLength(dir, distance);
+	return distance;
+}
 
+float AVR_PlayerChaperone::DistanceBetweenRHandAndHMD()
+{
+	FVector length = _vive.Chaperone_Location - _vive.Right_Location;
+	FVector dir;
+	float distance = 0;
+	length.ToDirectionAndLength(dir, distance);
+	return distance;
+}
 void AVR_PlayerChaperone::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
+}
+
+bool AVR_PlayerChaperone::AttachToBowOrNot()
+{
+	float distance = 0;
+	if (_arrowManager->_isArrowAttachedToHand)
+	{
+		if (DistanceBetweenHands() <= MAXGRABDISTANCE)
+		{
+			_arrowManager->_isArrowAttachedToBow = true;
+			_arrowManager->_isArrowAttachedToHand = false;
+			return true;
+		}
+		
+	}
+	return false;
 }
 // Called every frame
 void AVR_PlayerChaperone::Tick(float DeltaTime)
@@ -145,8 +173,8 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 	UpdateLeftMotionController();
 	// update R_MotionController position
 	UpdateRightMotionController();
-	// spawn an arrow and attach it to the R_MotionController
-	SpawnArrow();
+
+	UpdateTension(DeltaTime);
 
 	// On Trigger IE_Pressed
 	// get distance between hands
@@ -161,8 +189,8 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 // Called to bind functionality to input
 void AVR_PlayerChaperone::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
-	InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::GrabArrow);
-	InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
+	InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::SpawnArrow);
+	//InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::FireArrow);
 	Super::SetupPlayerInputComponent(InputComponent);
 }
 
