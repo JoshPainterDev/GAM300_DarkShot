@@ -80,3 +80,4 @@ private:
 	std::map<std::string, UBlueprint*> _arrowBlueprints;
 	bool _toggleEquipment; 
 };
+
