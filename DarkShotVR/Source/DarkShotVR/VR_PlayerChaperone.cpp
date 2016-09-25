@@ -132,7 +132,7 @@ void AVR_PlayerChaperone::UpdateTension(float DeltaTime)
 	float c = DeltaTime;
 	++c;
 	if (_arrowManager->_isArrowAttachedToBow == true)
-		_arrowManager->_bowTension = DistanceBetweenHands() - 20;
+		_arrowManager->_bowTension = FMath::Abs( DistanceBetweenHands() - 20.0);
 
 	// TODO: keep track of how long we are at max tension
 }

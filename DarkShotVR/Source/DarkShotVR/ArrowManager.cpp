@@ -5,6 +5,7 @@
 
 
 #define BOWTENSIONSCALAR 100
+#define BASEARROWSPEED 500
 // Sets default values for this component's properties
 UArrowManager::UArrowManager()
 {
@@ -44,10 +45,13 @@ void UArrowManager::SpawnAndAttachArrow(USceneComponent* R_MotionControllerScene
 	auto map = GetBluePrintMap();
 	if (_isArrowAttachedToBow == false && _isArrowAttachedToHand == false)
 	{
-		
 		CurrentArrow = GetWorld()->SpawnActor((*map)[FName("StandardArrow")]->GeneratedClass);
 		FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
 		CurrentArrow->AttachToComponent(R_MotionControllerScene, rules);
+		FVector arrowOffset = FVector(30.0, 0.0, 0.0);
+		CurrentArrow->SetActorRelativeLocation(arrowOffset, false);
+		FRotator arrowRotation = FRotator(0.0, 0.0, -90.0);
+		CurrentArrow->SetActorRelativeRotation(arrowRotation, false);
 		_isArrowAttachedToHand = true;
 	}
 
@@ -109,10 +113,10 @@ void UArrowManager::ShootArrow()
 
 	for (auto ProjectileMovementComponent : projectile)
 	{
-		_justReleased = true;
 		ProjectileMovementComponent->Activate(true);
+		_justReleased = true;
 		FVector velocity = CurrentArrow->GetActorForwardVector();
-		velocity.X *= _bowTension * BOWTENSIONSCALAR;
+		velocity.X *= BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
 		ProjectileMovementComponent->SetVelocityInLocalSpace(velocity);
 	}
 
@@ -122,10 +126,10 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene)
 {
 	FDetachmentTransformRules detachment(EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, true);
 	CurrentArrow->DetachFromActor(detachment);
-	FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
+	FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
 	CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
-	CurrentArrow->SetActorRelativeLocation(FVector(0, 0, 0));
-	CurrentArrow->SetActorRelativeRotation(FRotator(-90, -90, 0));
+	CurrentArrow->SetActorRelativeLocation(FVector(1, 0, 0));
+	CurrentArrow->SetActorRelativeRotation(FRotator(-90, 0, 0));
 	_isArrowAttachedToBow = true;
 	_isArrowAttachedToHand = false;
 	_justReleased = false;
