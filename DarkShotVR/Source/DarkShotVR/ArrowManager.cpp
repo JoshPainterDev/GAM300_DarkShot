@@ -85,7 +85,9 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 
 		case EEquipmentType::CORROSIVE:
 		{
-
+			CurrentArrow->Destroy();
+			CurrentArrow = GetWorld()->SpawnActor((*map)[FName("CorrosiveArrow")]->GeneratedClass);
+			AttachToBow(L_MotionControllerScene);
 		}
 		break;
 
