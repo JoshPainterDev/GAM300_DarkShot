@@ -4,8 +4,8 @@
 #include "ArrowManager.h"
 
 
-#define BOWTENSIONSCALAR 100
-#define BASEARROWSPEED 500
+#define BOWTENSIONSCALAR 42
+#define BASEARROWSPEED 400
 // Sets default values for this component's properties
 UArrowManager::UArrowManager()
 {
@@ -116,7 +116,11 @@ void UArrowManager::ShootArrow()
 		_justReleased = true;
 		FVector velocity = CurrentArrow->GetActorForwardVector();
 		velocity.X = FMath::Abs(velocity.X);
-		velocity.X *= BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
+		velocity.Y = FMath::Abs(velocity.Y);
+		velocity.Z = FMath::Abs(velocity.Z);
+		velocity.X = BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
+		for (auto i = 0; i < 20; i++)
+			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, FString::FromInt(_bowTension));
 		ProjectileMovementComponent->SetVelocityInLocalSpace(velocity);
 		break;
 	}
