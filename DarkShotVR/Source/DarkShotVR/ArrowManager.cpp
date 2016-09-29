@@ -108,7 +108,6 @@ void UArrowManager::ShootArrow()
 	CurrentArrow->DetachFromActor(rules);
 	_isArrowAttachedToBow = false;
 	TArray<UProjectileMovementComponent*> projectile;
-
 	CurrentArrow->GetComponents(projectile);
 
 	for (auto ProjectileMovementComponent : projectile)
@@ -116,10 +115,11 @@ void UArrowManager::ShootArrow()
 		ProjectileMovementComponent->Activate(true);
 		_justReleased = true;
 		FVector velocity = CurrentArrow->GetActorForwardVector();
+		velocity.X = FMath::Abs(velocity.X);
 		velocity.X *= BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
 		ProjectileMovementComponent->SetVelocityInLocalSpace(velocity);
+		break;
 	}
-
 }
 
 void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene)
