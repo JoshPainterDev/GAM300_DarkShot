@@ -4,8 +4,8 @@
 #include "ArrowManager.h"
 
 
-#define BOWTENSIONSCALAR 42
-#define BASEARROWSPEED 400
+#define BOWTENSIONSCALAR 48
+#define BASEARROWSPEED 450
 // Sets default values for this component's properties
 UArrowManager::UArrowManager()
 {
@@ -48,7 +48,7 @@ void UArrowManager::SpawnAndAttachArrow(USceneComponent* R_MotionControllerScene
 		CurrentArrow = GetWorld()->SpawnActor((*map)[FName("StandardArrow")]->GeneratedClass);
 		FAttachmentTransformRules rules(EAttachmentRule::SnapToTarget, EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, true);
 		CurrentArrow->AttachToComponent(R_MotionControllerScene, rules);
-		FVector arrowOffset = FVector(30.0, 0.0, 0.0);
+		FVector arrowOffset = FVector(25.0, 0.0, 0.0);
 		CurrentArrow->SetActorRelativeLocation(arrowOffset, false);
 		FRotator arrowRotation = FRotator(0.0, 0.0, -90.0);
 		CurrentArrow->SetActorRelativeRotation(arrowRotation, false);
@@ -85,7 +85,9 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 
 		case EEquipmentType::CORROSIVE:
 		{
-
+			CurrentArrow->Destroy();
+			CurrentArrow = GetWorld()->SpawnActor((*map)[FName("CorrosiveArrow")]->GeneratedClass);
+			AttachToBow(L_MotionControllerScene);
 		}
 		break;
 
@@ -147,8 +149,8 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene)
 	CurrentArrow->DetachFromActor(detachment);
 	FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
 	CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
-	CurrentArrow->SetActorRelativeLocation(FVector(1, 0, 0));
-	CurrentArrow->SetActorRelativeRotation(FRotator(-90, 0, 0));
+	CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+	CurrentArrow->SetActorRelativeRotation(FRotator(-90, -80, -90));
 	_isArrowAttachedToBow = true;
 	_isArrowAttachedToHand = false;
 	_justReleased = false;

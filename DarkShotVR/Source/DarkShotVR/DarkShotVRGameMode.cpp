@@ -16,11 +16,13 @@ ADarkShotVRGameMode::ADarkShotVRGameMode()
 	// Find all the arrows that we want to load
 	static ConstructorHelpers::FObjectFinder<UBlueprint> StandardArrow(TEXT("Blueprint'/Game/Arrows/Blueprints/StandardArrow.StandardArrow'"));
 	static ConstructorHelpers::FObjectFinder<UBlueprint> ExplosiveArrow(TEXT("Blueprint'/Game/Arrows/Blueprints/ExplosiveArrow.ExplosiveArrow'"));
+	static ConstructorHelpers::FObjectFinder<UBlueprint> CorrosiveArrow(TEXT("Blueprint'/Game/Arrows/Blueprints/CorrosiveArrow.CorrosiveArrow'"));
 	// End of finding arrows
 
 	// Now store them all into a map
 	m_bluePrintMap.Add(FName("StandardArrow"),StandardArrow.Object);
 	m_bluePrintMap.Add(FName("ExplosiveArrow"), ExplosiveArrow.Object);
+	m_bluePrintMap.Add(FName("CorrosiveArrow"), CorrosiveArrow.Object);
 
 	s_bluePrintMapPtr = &m_bluePrintMap;
 }
