@@ -64,6 +64,8 @@ public:
 		void ToggleEquipment(USceneComponent* L_MotionControllerScene);
 	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
 		void ShootArrow();
+	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
+		void DropArrow();
 
 	AActor* CurrentArrow;
 	void AttachToBow(USceneComponent* L_MotionControllerScene);

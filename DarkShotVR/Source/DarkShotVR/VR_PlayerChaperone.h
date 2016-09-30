@@ -42,6 +42,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UArrowManager* _arrowManager;
 
+	// Controller Trigger State
+	bool _triggerPressed;
+
 	// Struct used to store all the information needed for location and rotation
 	struct ViveInfo
 	{
@@ -67,10 +70,13 @@ public:
 	void UpdateLeftMotionController();
 	void UpdateRightMotionController();
 	void GrabArrow();
+	void AttachArrow();
 	void ShootArrow();
 	void SpawnArrow();
 	void SpawnAndAttachArrowToRightHand();
 	void ToggleEquipment();
+	void TriggerPressed();
+	void TriggerReleased();
 	UFUNCTION(BlueprintCallable, Category = "ArrowManager")
 		void UpdateTension(float DeltaTime);
 	UFUNCTION(BlueprintCallable, Category = "ArrowManager")

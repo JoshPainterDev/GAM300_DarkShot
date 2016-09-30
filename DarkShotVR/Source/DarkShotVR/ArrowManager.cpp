@@ -119,9 +119,24 @@ void UArrowManager::ShootArrow()
 		velocity.Y = FMath::Abs(velocity.Y);
 		velocity.Z = FMath::Abs(velocity.Z);
 		velocity.X = BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
-		for (auto i = 0; i < 20; i++)
-			GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, FString::FromInt(_bowTension));
 		ProjectileMovementComponent->SetVelocityInLocalSpace(velocity);
+		break;
+	}
+}
+
+void UArrowManager::DropArrow()
+{
+	FDetachmentTransformRules rules(EDetachmentRule::KeepWorld, EDetachmentRule::KeepWorld, EDetachmentRule::KeepRelative, true);
+	CurrentArrow->DetachFromActor(rules);
+	_isArrowAttachedToHand = false;
+	TArray<UProjectileMovementComponent*> projectile;
+	CurrentArrow->GetComponents(projectile);
+
+	for (auto ProjectileMovementComponent : projectile)
+	{
+		ProjectileMovementComponent->InitialSpeed = 0;
+		ProjectileMovementComponent->Activate(true);	
+		ProjectileMovementComponent->SetVelocityInLocalSpace(FVector());
 		break;
 	}
 }

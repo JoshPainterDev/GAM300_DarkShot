@@ -3,7 +3,7 @@
 #include "DarkShotVR.h"
 #include "VR_PlayerChaperone.h"
 
-#define MAXGRABDISTANCE 40
+#define MAXGRABDISTANCE 20
 #define TENSIONSCALE 20
 #define MAXTENSION	50
 
@@ -61,6 +61,8 @@ AVR_PlayerChaperone::AVR_PlayerChaperone()
 	// End of Mesh Setups
 
 	_arrowManager = CreateDefaultSubobject<UArrowManager>(TEXT("ArrowManager"));
+
+	_triggerPressed = false;
 }
 
 // Called when the game starts or when spawned
@@ -106,18 +108,16 @@ void AVR_PlayerChaperone::GrabArrow()
 }
 void AVR_PlayerChaperone::ShootArrow()
 {
-	if (_arrowManager->_isArrowAttachedToBow == true)
-		_arrowManager->ShootArrow();
+		if (_arrowManager->_isArrowAttachedToBow == true)
+			_arrowManager->ShootArrow();
 }
 void AVR_PlayerChaperone::SpawnArrow()
 {
 	if (_arrowManager->_isArrowAttachedToBow == false && _arrowManager->_isArrowAttachedToHand == false)
 		if (DistanceBetweenRHandAndHMD() < MAXGRABDISTANCE)
+		{
 			_arrowManager->SpawnAndAttachArrow(R_MotionControllerScene);
-
-	if (_arrowManager->_isArrowAttachedToHand == true)
-		if (DistanceBetweenHands() < 20)
-			_arrowManager->AttachToBow(L_MotionControllerScene);
+		}
 }
 
 void AVR_PlayerChaperone::ToggleEquipment()
@@ -139,18 +139,19 @@ void AVR_PlayerChaperone::UpdateTension(float DeltaTime)
 float AVR_PlayerChaperone::DistanceBetweenHands()
 {
 	FVector length = _vive.Left_Location - _vive.Right_Location;
-	FVector dir;
-	float distance = 0;
-	length.ToDirectionAndLength(dir, distance);
+	float distance = length.Size();;
 	return distance;
 }
 
 float AVR_PlayerChaperone::DistanceBetweenRHandAndHMD()
 {
-	FVector length = _vive.Chaperone_Location - _vive.Right_Location;
-	FVector dir;
-	float distance = 0;
-	length.ToDirectionAndLength(dir, distance);
+	FVector location = _vive.Chaperone_Location;
+	location.Z -= 10;
+	FVector dir = _vive.Chaperone_Rotation.Vector();
+	FVector length = location - _vive.Right_Location - 30 * dir;
+	float distance = length.Size();
+	/*for (auto i = 0; i < 20; i++)
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, FString::SanitizeFloat(distance));*/
 	return distance;
 }
 void AVR_PlayerChaperone::OnOverlapBegin(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
@@ -185,6 +186,9 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 	UpdateRightMotionController();
 
 	UpdateTension(DeltaTime);
+	
+	if (_arrowManager->_isArrowAttachedToHand && _triggerPressed)
+		AttachArrow();
 
 	// On Trigger IE_Pressed
 	// get distance between hands
@@ -197,12 +201,30 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 
 }
 
+void AVR_PlayerChaperone::TriggerPressed()
+{
+	_triggerPressed = true;
+	SpawnArrow();
+}
+
+void AVR_PlayerChaperone::TriggerReleased()
+{
+	_triggerPressed = false;
+	ShootArrow();
+}
+
+void AVR_PlayerChaperone::AttachArrow()
+{
+	if (DistanceBetweenHands() < 20)
+		_arrowManager->AttachToBow(L_MotionControllerScene);
+}
+
 // Called to bind functionality to input
 void AVR_PlayerChaperone::SetupPlayerInputComponent(UInputComponent* InputComponent)
 {
-	InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::SpawnArrow);
-	InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::ShootArrow);
-	InputComponent->BindAction("ToggleEquipment", IE_Pressed, this, &AVR_PlayerChaperone::ToggleEquipment);
 	Super::SetupPlayerInputComponent(InputComponent);
+	InputComponent->BindAction("GrabArrow", IE_Pressed, this, &AVR_PlayerChaperone::TriggerPressed);
+	InputComponent->BindAction("GrabArrow", IE_Released, this, &AVR_PlayerChaperone::TriggerReleased);
+	InputComponent->BindAction("ToggleEquipment", IE_Pressed, this, &AVR_PlayerChaperone::ToggleEquipment);
 }
 
