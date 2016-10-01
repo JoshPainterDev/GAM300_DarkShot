@@ -149,8 +149,17 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene)
 	CurrentArrow->DetachFromActor(detachment);
 	FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
 	CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
+
+	for (auto i = 0; i < 10; i++)
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
+
 	CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
-	CurrentArrow->SetActorRelativeRotation(FRotator(-90, -80, -90));
+	//CurrentArrow->SetActorRelativeRotation(FRotator(-90, 0, 3));
+	CurrentArrow->AddActorLocalRotation(FRotator(-170, 90, 90));
+	
+	for (auto i = 0; i < 10; i++)
+		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
+
 	_isArrowAttachedToBow = true;
 	_isArrowAttachedToHand = false;
 	_justReleased = false;
