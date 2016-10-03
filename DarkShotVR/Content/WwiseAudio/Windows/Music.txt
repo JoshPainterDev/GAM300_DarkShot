@@ -1,0 +1,7 @@
+Event	ID	Name			Wwise Object Path	Notes
+	524814926	Stop_Mus_Elevator			\Default Work Unit\Stop_Mus_Elevator	
+	570508420	Play_Mus_Elevator			\Default Work Unit\Play_Mus_Elevator	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	199007080	ElevatorMusicLoop3	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\ElevatorMusicLoop3_FDCA9897.wem		\Interactive Music Hierarchy\Default Work Unit\ElevatorMusic\Elevator_Music_Placeholder\ElevatorMusicLoop3		1135690
+

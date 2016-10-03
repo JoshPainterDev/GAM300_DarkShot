@@ -1,0 +1,12 @@
+Event	ID	Name			Wwise Object Path	Notes
+	924897768	Play_VO_Player2_Reviving_7			\Default Work Unit\Play_VO_Player2_Reviving_7	
+	2657945433	Play_VO_Hurt			\Default Work Unit\Play_VO_Hurt	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	215992295	Player_Health			\Default Work Unit\Player_Health	This parameter was created to alter the soundscape based on the current player health. 
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	308196841	VO_Player2_Reviving_7	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\Voices\English(US)\VO_Player2_Reviving_7_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\VO_Actor-Mixer\Placeholder\VO_Player2_Reviving_7		10589
+	404787737	VO_Player2_Death_9	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\Voices\English(US)\VO_Player2_Death_9_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\VO_Actor-Mixer\Placeholder\Hurt\VO_Player2_Death_9		11557
+	452658447	VO_Player2_Hurt_5	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\Voices\English(US)\VO_Player2_Hurt_5_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\VO_Actor-Mixer\Placeholder\Hurt\VO_Player2_Hurt_5		10900
+

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="118">
+	<RootPaths>
+		<ProjectRoot>Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\</ProjectRoot>
+		<SourceFilesRoot>Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\j.henke\Desktop\Telexistence\DarkShotVR\Content\WwiseAudio\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="244536663" Language="English(US)">
+			<ObjectPath>\SoundBanks\Default Work Unit\DarkShot_Soundbank</ObjectPath>
+			<ShortName>DarkShot_Soundbank</ShortName>
+			<Path>English(US)\DarkShot_Soundbank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="283880008" Name="Pause_All_Except_Music_Bus" ObjectPath="\Events\Default Work Unit\Pause_All_Except_Music_Bus"/>
+				<Event Id="2927944082" Name="Pause_Master_Audio_Bus" ObjectPath="\Events\Default Work Unit\Pause_Master_Audio_Bus"/>
+				<Event Id="102721855" Name="Play_BowExplosion" ObjectPath="\Events\Default Work Unit\Play_BowExplosion"/>
+				<Event Id="2292958041" Name="Play_BowRelease" ObjectPath="\Events\Default Work Unit\Play_BowRelease"/>
+				<Event Id="3088482846" Name="Play_BowRelease_ExplosiveTick" ObjectPath="\Events\Default Work Unit\Play_BowRelease_ExplosiveTick"/>
+				<Event Id="4034925906" Name="Play_BowRelease_RailGun" ObjectPath="\Events\Default Work Unit\Play_BowRelease_RailGun"/>
+				<Event Id="267051661" Name="Play_BowStretch" ObjectPath="\Events\Default Work Unit\Play_BowStretch"/>
+				<Event Id="3641368652" Name="Play_CriticalHit" ObjectPath="\Events\Default Work Unit\Play_CriticalHit"/>
+				<Event Id="2084434174" Name="Play_ExplosiveHit" ObjectPath="\Events\Default Work Unit\Play_ExplosiveHit"/>
+				<Event Id="3780762382" Name="Play_MetalHit" ObjectPath="\Events\Default Work Unit\Play_MetalHit"/>
+				<Event Id="570508420" Name="Play_Mus_Elevator" ObjectPath="\Events\Default Work Unit\Play_Mus_Elevator"/>
+				<Event Id="2657945433" Name="Play_VO_Hurt" ObjectPath="\Events\Default Work Unit\Play_VO_Hurt"/>
+				<Event Id="924897768" Name="Play_VO_Player2_Reviving_7" ObjectPath="\Events\Default Work Unit\Play_VO_Player2_Reviving_7"/>
+				<Event Id="1753569085" Name="Resume_Master_Audio_Bus" ObjectPath="\Events\Default Work Unit\Resume_Master_Audio_Bus"/>
+				<Event Id="524814926" Name="Stop_Mus_Elevator" ObjectPath="\Events\Default Work Unit\Stop_Mus_Elevator"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="78191580" Language="SFX">
+					<ShortName>Arrow_MetalHit2.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit2_75274E59.wem</Path>
+				</File>
+				<File Id="120894765" Language="SFX">
+					<ShortName>Glass_Smash1.wav</ShortName>
+					<Path>SFX\Glass_Smash1_75274E59.wem</Path>
+				</File>
+				<File Id="199007080" Language="SFX">
+					<ShortName>ElevatorMusicLoop3.wav</ShortName>
+					<Path>SFX\ElevatorMusicLoop3_FDCA9897.wem</Path>
+				</File>
+				<File Id="308196841" Language="English(US)">
+					<ShortName>VO_Player2_Reviving_7.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Reviving_7_75274E59.wem</Path>
+				</File>
+				<File Id="319287442" Language="SFX">
+					<ShortName>Glass_Smash3.wav</ShortName>
+					<Path>SFX\Glass_Smash3_75274E59.wem</Path>
+				</File>
+				<File Id="403383545" Language="SFX">
+					<ShortName>VR_Project_SFX_Bow_Explosion.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_Bow_Explosion_75274E59.wem</Path>
+				</File>
+				<File Id="404787737" Language="English(US)">
+					<ShortName>VO_Player2_Death_9.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Death_9_75274E59.wem</Path>
+				</File>
+				<File Id="452658447" Language="English(US)">
+					<ShortName>VO_Player2_Hurt_5.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Hurt_5_75274E59.wem</Path>
+				</File>
+				<File Id="465146664" Language="SFX">
+					<ShortName>Arrow_MetalHit3.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit3_75274E59.wem</Path>
+				</File>
+				<File Id="579568726" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease_RailGun.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_RailGun_75274E59.wem</Path>
+				</File>
+				<File Id="604158455" Language="SFX">
+					<ShortName>Arrow_criticalHit_2.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_2_75274E59.wem</Path>
+				</File>
+				<File Id="639269801" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_75274E59.wem</Path>
+				</File>
+				<File Id="703274958" Language="SFX">
+					<ShortName>VR_Project_SFX_BowStretch.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowStretch_75274E59.wem</Path>
+				</File>
+				<File Id="840426111" Language="SFX">
+					<ShortName>Glass_Smash2.wav</ShortName>
+					<Path>SFX\Glass_Smash2_75274E59.wem</Path>
+				</File>
+				<File Id="893648429" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease_ExplosiveTick.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_ExplosiveTick_75274E59.wem</Path>
+				</File>
+				<File Id="1015929619" Language="SFX">
+					<ShortName>Arrow_criticalHit_3.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_3_75274E59.wem</Path>
+				</File>
+				<File Id="1028245919" Language="SFX">
+					<ShortName>Arrow_criticalHit_1.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_1_75274E59.wem</Path>
+				</File>
+				<File Id="1062466867" Language="SFX">
+					<ShortName>Arrow_MetalHit1.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit1_75274E59.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="393239870" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\SFX</ObjectPath>
+			<ShortName>SFX</ShortName>
+			<Path>SFX.bnk</Path>
+			<IncludedEvents>
+				<Event Id="102721855" Name="Play_BowExplosion" ObjectPath="\Events\Default Work Unit\Play_BowExplosion"/>
+				<Event Id="2292958041" Name="Play_BowRelease" ObjectPath="\Events\Default Work Unit\Play_BowRelease"/>
+				<Event Id="3088482846" Name="Play_BowRelease_ExplosiveTick" ObjectPath="\Events\Default Work Unit\Play_BowRelease_ExplosiveTick"/>
+				<Event Id="4034925906" Name="Play_BowRelease_RailGun" ObjectPath="\Events\Default Work Unit\Play_BowRelease_RailGun"/>
+				<Event Id="267051661" Name="Play_BowStretch" ObjectPath="\Events\Default Work Unit\Play_BowStretch"/>
+				<Event Id="3641368652" Name="Play_CriticalHit" ObjectPath="\Events\Default Work Unit\Play_CriticalHit"/>
+				<Event Id="2084434174" Name="Play_ExplosiveHit" ObjectPath="\Events\Default Work Unit\Play_ExplosiveHit"/>
+				<Event Id="3780762382" Name="Play_MetalHit" ObjectPath="\Events\Default Work Unit\Play_MetalHit"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="78191580" Language="SFX">
+					<ShortName>Arrow_MetalHit2.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit2_75274E59.wem</Path>
+				</File>
+				<File Id="120894765" Language="SFX">
+					<ShortName>Glass_Smash1.wav</ShortName>
+					<Path>SFX\Glass_Smash1_75274E59.wem</Path>
+				</File>
+				<File Id="319287442" Language="SFX">
+					<ShortName>Glass_Smash3.wav</ShortName>
+					<Path>SFX\Glass_Smash3_75274E59.wem</Path>
+				</File>
+				<File Id="403383545" Language="SFX">
+					<ShortName>VR_Project_SFX_Bow_Explosion.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_Bow_Explosion_75274E59.wem</Path>
+				</File>
+				<File Id="465146664" Language="SFX">
+					<ShortName>Arrow_MetalHit3.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit3_75274E59.wem</Path>
+				</File>
+				<File Id="579568726" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease_RailGun.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_RailGun_75274E59.wem</Path>
+				</File>
+				<File Id="604158455" Language="SFX">
+					<ShortName>Arrow_criticalHit_2.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_2_75274E59.wem</Path>
+				</File>
+				<File Id="639269801" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_75274E59.wem</Path>
+				</File>
+				<File Id="703274958" Language="SFX">
+					<ShortName>VR_Project_SFX_BowStretch.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowStretch_75274E59.wem</Path>
+				</File>
+				<File Id="840426111" Language="SFX">
+					<ShortName>Glass_Smash2.wav</ShortName>
+					<Path>SFX\Glass_Smash2_75274E59.wem</Path>
+				</File>
+				<File Id="893648429" Language="SFX">
+					<ShortName>VR_Project_SFX_BowRelease_ExplosiveTick.wav</ShortName>
+					<Path>SFX\VR_Project_SFX_BowRelease_ExplosiveTick_75274E59.wem</Path>
+				</File>
+				<File Id="1015929619" Language="SFX">
+					<ShortName>Arrow_criticalHit_3.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_3_75274E59.wem</Path>
+				</File>
+				<File Id="1028245919" Language="SFX">
+					<ShortName>Arrow_criticalHit_1.wav</ShortName>
+					<Path>SFX\Arrow_criticalHit_1_75274E59.wem</Path>
+				</File>
+				<File Id="1062466867" Language="SFX">
+					<ShortName>Arrow_MetalHit1.wav</ShortName>
+					<Path>SFX\Arrow_MetalHit1_75274E59.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1534528548" Language="English(US)">
+			<ObjectPath>\SoundBanks\Default Work Unit\VO</ObjectPath>
+			<ShortName>VO</ShortName>
+			<Path>English(US)\VO.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2657945433" Name="Play_VO_Hurt" ObjectPath="\Events\Default Work Unit\Play_VO_Hurt"/>
+				<Event Id="924897768" Name="Play_VO_Player2_Reviving_7" ObjectPath="\Events\Default Work Unit\Play_VO_Player2_Reviving_7"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="308196841" Language="English(US)">
+					<ShortName>VO_Player2_Reviving_7.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Reviving_7_75274E59.wem</Path>
+				</File>
+				<File Id="404787737" Language="English(US)">
+					<ShortName>VO_Player2_Death_9.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Death_9_75274E59.wem</Path>
+				</File>
+				<File Id="452658447" Language="English(US)">
+					<ShortName>VO_Player2_Hurt_5.wav</ShortName>
+					<Path>Voices\English(US)\VO_Player2_Hurt_5_75274E59.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="3991942870" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
+			<ShortName>Music</ShortName>
+			<Path>Music.bnk</Path>
+			<IncludedEvents>
+				<Event Id="570508420" Name="Play_Mus_Elevator" ObjectPath="\Events\Default Work Unit\Play_Mus_Elevator"/>
+				<Event Id="524814926" Name="Stop_Mus_Elevator" ObjectPath="\Events\Default Work Unit\Stop_Mus_Elevator"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="199007080" Language="SFX">
+					<ShortName>ElevatorMusicLoop3.wav</ShortName>
+					<Path>SFX\ElevatorMusicLoop3_FDCA9897.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

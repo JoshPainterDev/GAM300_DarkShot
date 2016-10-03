@@ -1,0 +1,29 @@
+Event	ID	Name			Wwise Object Path	Notes
+	102721855	Play_BowExplosion			\Default Work Unit\Play_BowExplosion	
+	267051661	Play_BowStretch			\Default Work Unit\Play_BowStretch	
+	2084434174	Play_ExplosiveHit			\Default Work Unit\Play_ExplosiveHit	
+	2292958041	Play_BowRelease			\Default Work Unit\Play_BowRelease	
+	3088482846	Play_BowRelease_ExplosiveTick			\Default Work Unit\Play_BowRelease_ExplosiveTick	
+	3641368652	Play_CriticalHit			\Default Work Unit\Play_CriticalHit	
+	3780762382	Play_MetalHit			\Default Work Unit\Play_MetalHit	
+	4034925906	Play_BowRelease_RailGun			\Default Work Unit\Play_BowRelease_RailGun	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	215992295	Player_Health			\Default Work Unit\Player_Health	This parameter was created to alter the soundscape based on the current player health. 
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	78191580	Arrow_MetalHit2	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_MetalHit2_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Metal_Hit\Arrow_MetalHit2		29978
+	120894765	Glass_Smash1	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Glass_Smash1_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Explosive_Hit\Glass_Smash\Glass_Smash1		32364
+	319287442	Glass_Smash3	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Glass_Smash3_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Explosive_Hit\Glass_Smash\Glass_Smash3		28601
+	403383545	VR_Project_SFX_Bow_Explosion	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\VR_Project_SFX_Bow_Explosion_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Explosive_Hit\VR_Project_SFX_Bow_Explosion		23609
+	465146664	Arrow_MetalHit3	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_MetalHit3_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Metal_Hit\Arrow_MetalHit3		14366
+	579568726	VR_Project_SFX_BowRelease_RailGun	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\VR_Project_SFX_BowRelease_RailGun_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\VR_Project_SFX_BowRelease_RailGun		40288
+	604158455	Arrow_criticalHit_2	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_criticalHit_2_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Critical_Hit\Arrow_criticalHit_2		13445
+	639269801	VR_Project_SFX_BowRelease	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\VR_Project_SFX_BowRelease_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\VR_Project_SFX_BowRelease		17488
+	703274958	VR_Project_SFX_BowStretch	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\VR_Project_SFX_BowStretch_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\VR_Project_SFX_BowStretch		52102
+	840426111	Glass_Smash2	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Glass_Smash2_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Explosive_Hit\Glass_Smash\Glass_Smash2		36957
+	893648429	VR_Project_SFX_BowRelease_ExplosiveTick	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\VR_Project_SFX_BowRelease_ExplosiveTick_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\VR_Project_SFX_BowRelease_ExplosiveTick		166361
+	1015929619	Arrow_criticalHit_3	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_criticalHit_3_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Critical_Hit\Arrow_criticalHit_3		12856
+	1028245919	Arrow_criticalHit_1	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_criticalHit_1_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Critical_Hit\Arrow_criticalHit_1		13484
+	1062466867	Arrow_MetalHit1	Y:\Mus450\Fall 2016\Games\Telexistence - Dark Shot\Wwise Project\Telexistence_DarkShot_VR\.cache\Windows\SFX\Arrow_MetalHit1_75274E59.wem		\Actor-Mixer Hierarchy\Default Work Unit\SFX_Actor-Mixer\Metal_Hit\Arrow_MetalHit1		9578
+
