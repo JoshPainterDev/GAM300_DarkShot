@@ -6,6 +6,9 @@
 
 #define BOWTENSIONSCALAR 48
 #define BASEARROWSPEED 450
+#define MIDARROWROT FRotator(-90, 0, 0)
+#define LEFTARROWROT FRotator(-30, 0, 0)
+#define RIGHTARROWROT FRotator(30, 0, 0)
 // Sets default values for this component's properties
 UArrowManager::UArrowManager()
 {
@@ -68,7 +71,20 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 		// unload equipment
 		CurrentArrow->Destroy();
 		CurrentArrow = GetWorld()->SpawnActor((*map)[FName("StandardArrow")]->GeneratedClass);
-		AttachToBow(L_MotionControllerScene);
+
+		if (arrowsLoaded == 3)
+		{
+			RightSplitArrow->Destroy();
+			LeftSplitArrow->Destroy();
+
+			RightSplitArrow = GetWorld()->SpawnActor((*map)[FName("ExplosiveArrow")]->GeneratedClass);
+			LeftSplitArrow = GetWorld()->SpawnActor((*map)[FName("ExplosiveArrow")]->GeneratedClass);
+
+			AttachToBow(L_MotionControllerScene, 3u);
+			return;
+		}
+
+		AttachToBow(L_MotionControllerScene, 1u);
 	}
 	else
 	{
@@ -79,7 +95,20 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 		{
 			CurrentArrow->Destroy();
 			CurrentArrow = GetWorld()->SpawnActor((*map)[FName("ExplosiveArrow")]->GeneratedClass);
-			AttachToBow(L_MotionControllerScene);
+			
+			if (arrowsLoaded == 3)
+			{
+				RightSplitArrow->Destroy();
+				LeftSplitArrow->Destroy();
+
+				RightSplitArrow = GetWorld()->SpawnActor((*map)[FName("ExplosiveArrow")]->GeneratedClass);
+				LeftSplitArrow = GetWorld()->SpawnActor((*map)[FName("ExplosiveArrow")]->GeneratedClass);
+
+				AttachToBow(L_MotionControllerScene, 3u);
+				return;
+			}
+
+			AttachToBow(L_MotionControllerScene, 1u);
 		}
 		break;
 
@@ -87,13 +116,55 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 		{
 			CurrentArrow->Destroy();
 			CurrentArrow = GetWorld()->SpawnActor((*map)[FName("CorrosiveArrow")]->GeneratedClass);
-			AttachToBow(L_MotionControllerScene);
+
+			if (arrowsLoaded == 3)
+			{
+				RightSplitArrow->Destroy();
+				LeftSplitArrow->Destroy();
+
+				RightSplitArrow = GetWorld()->SpawnActor((*map)[FName("CorrosiveArrow")]->GeneratedClass);
+				LeftSplitArrow = GetWorld()->SpawnActor((*map)[FName("CorrosiveArrow")]->GeneratedClass);
+
+				AttachToBow(L_MotionControllerScene, 3u);
+				return;
+			}
+
+			AttachToBow(L_MotionControllerScene, 1u);
 		}
 		break;
 
 		case EEquipmentType::TRIPWIRE:
 		{
+			CurrentArrow->Destroy();
 
+			if (arrowsLoaded == 1)
+			{
+				//Spawn Right Arrow
+				RightSplitArrow = GetWorld()->SpawnActor((*map)[FName("TripHeadArrow")]->GeneratedClass);
+
+				RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+				RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
+				//Spawn Left Arrow
+				LeftSplitArrow = GetWorld()->SpawnActor((*map)[FName("TripTailArrow")]->GeneratedClass);
+				LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+				LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
+				AttachToBow(L_MotionControllerScene, 2u);
+			}
+			else if (arrowsLoaded == 3)
+			{
+				CurrentArrow = GetWorld()->SpawnActor((*map)[FName("TripHeadArrow")]->GeneratedClass);
+				//Spawn Right Arrow
+				RightSplitArrow = GetWorld()->SpawnActor((*map)[FName("TripTailArrow")]->GeneratedClass);
+				//Set transform Right Arrow
+				RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+				RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
+				//Spawn Left Arrow
+				LeftSplitArrow = GetWorld()->SpawnActor((*map)[FName("TripTailArrow")]->GeneratedClass);
+				//Set transform Left Arrow
+				LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+				LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
+				AttachToBow(L_MotionControllerScene, 3u);
+			}
 		}
 		break;
 
@@ -120,7 +191,7 @@ void UArrowManager::ShootArrow()
 		velocity.X = FMath::Abs(velocity.X);
 		velocity.Y = FMath::Abs(velocity.Y);
 		velocity.Z = FMath::Abs(velocity.Z);
-		velocity.X = BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR);
+		velocity.X = BASEARROWSPEED + (_bowTension * BOWTENSIONSCALAR) + abilitySteroid;
 		ProjectileMovementComponent->SetVelocityInLocalSpace(velocity);
 		break;
 	}
@@ -143,22 +214,65 @@ void UArrowManager::DropArrow()
 	}
 }
 
-void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene)
+void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene, unsigned numArrows)
 {
-	FDetachmentTransformRules detachment(EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, true);
-	CurrentArrow->DetachFromActor(detachment);
-	FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
-	CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
+	arrowsLoaded = numArrows;
 
-	for (auto i = 0; i < 10; i++)
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
+	if (numArrows == 1)
+	{
+		FDetachmentTransformRules detachment(EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, true);
+		CurrentArrow->DetachFromActor(detachment);
+		FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
+		CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
 
-	CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
-	CurrentArrow->SetActorRelativeRotation(FRotator(-90, 0, 3));
+		CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		CurrentArrow->SetActorRelativeRotation(MIDARROWROT);
+	}
+	else if (numArrows == 2)
+	{
+		//Detach all arrows
+		FDetachmentTransformRules detachment(EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, true);
+		RightSplitArrow->DetachFromActor(detachment);
+		LeftSplitArrow->DetachFromActor(detachment);
+		//Attach all arrows
+		FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
+		RightSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
+		LeftSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
+		//Set relative transform of Right Arrow
+		RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
+		//Set relative transform of Left Arrow
+		LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
+	}
+	else if (numArrows == 3)
+	{
+		//Detach all arrows
+		FDetachmentTransformRules detachment(EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, EDetachmentRule::KeepRelative, true);
+		CurrentArrow->DetachFromActor(detachment);
+		RightSplitArrow->DetachFromActor(detachment);
+		LeftSplitArrow->DetachFromActor(detachment);
+		//Attach all arrows
+		FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
+		CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
+		RightSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
+		LeftSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
+		//Set relative transform of Middle Arrow
+		CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		CurrentArrow->SetActorRelativeRotation(MIDARROWROT);
+		//Set relative transform of Right Arrow
+		RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
+		//Set relative transform of Left Arrow
+		LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
+	}
+
+	//for (auto i = 0; i < 10; i++)
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
 	//CurrentArrow->AddActorLocalRotation(FRotator(-170, 90, 90));
-	
-	for (auto i = 0; i < 10; i++)
-		GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
+	//for (auto i = 0; i < 10; i++)
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorRotation().ToString());
 
 	_isArrowAttachedToBow = true;
 	_isArrowAttachedToHand = false;

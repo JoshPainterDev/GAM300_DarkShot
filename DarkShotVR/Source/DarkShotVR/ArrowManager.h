@@ -68,7 +68,11 @@ public:
 		void DropArrow();
 
 	AActor* CurrentArrow;
-	void AttachToBow(USceneComponent* L_MotionControllerScene);
+	AActor* RightSplitArrow;
+	AActor* LeftSplitArrow;
+	unsigned arrowsLoaded = 0;
+	float abilitySteroid = 0.0;
+	void AttachToBow(USceneComponent* L_MotionControllerScene, unsigned numArrows);
 	// Sets default values for this component's properties
 	UArrowManager();
 	// Called when the game starts
