@@ -1,0 +1,346 @@
+Begin Object Class=Material Name="M_Metal_Burnished_Steel"
+   Begin Object Class=MaterialExpressionAdd Name="MaterialExpressionAdd_37"
+   End Object
+   Begin Object Class=MaterialExpressionAdd Name="MaterialExpressionAdd_38"
+   End Object
+   Begin Object Class=MaterialExpressionAdd Name="MaterialExpressionAdd_39"
+   End Object
+   Begin Object Class=MaterialExpressionComment Name="MaterialExpressionComment_62"
+   End Object
+   Begin Object Class=MaterialExpressionComment Name="MaterialExpressionComment_63"
+   End Object
+   Begin Object Class=MaterialExpressionComment Name="MaterialExpressionComment_67"
+   End Object
+   Begin Object Class=MaterialExpressionComment Name="MaterialExpressionComment_68"
+   End Object
+   Begin Object Class=MaterialExpressionComment Name="MaterialExpressionComment_71"
+   End Object
+   Begin Object Class=MaterialExpressionConstant Name="MaterialExpressionConstant_13"
+   End Object
+   Begin Object Class=MaterialExpressionConstant Name="MaterialExpressionConstant_73"
+   End Object
+   Begin Object Class=MaterialExpressionConstant Name="MaterialExpressionConstant_74"
+   End Object
+   Begin Object Class=MaterialExpressionConstant3Vector Name="MaterialExpressionConstant3Vector_18"
+   End Object
+   Begin Object Class=MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_37"
+   End Object
+   Begin Object Class=MaterialExpressionLinearInterpolate Name="MaterialExpressionLinearInterpolate_46"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_75"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_77"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_78"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_79"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_80"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_81"
+   End Object
+   Begin Object Class=MaterialExpressionMultiply Name="MaterialExpressionMultiply_82"
+   End Object
+   Begin Object Class=MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_37"
+   End Object
+   Begin Object Class=MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_38"
+   End Object
+   Begin Object Class=MaterialExpressionTextureCoordinate Name="MaterialExpressionTextureCoordinate_39"
+   End Object
+   Begin Object Class=MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_46"
+   End Object
+   Begin Object Class=MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_47"
+   End Object
+   Begin Object Class=MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_49"
+   End Object
+   Begin Object Class=MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_50"
+   End Object
+   Begin Object Class=MaterialExpressionTextureSample Name="MaterialExpressionTextureSample_51"
+   End Object
+   Begin Object Class=SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="MaterialExpressionAdd_37"
+      A=(Expression=MaterialExpressionTextureSample'M_Metal_Burnished_Steel:MaterialExpressionTextureSample_49',OutputIndex=1,Mask=1,MaskR=1)
+      ConstB=0.500000
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-1400
+      MaterialExpressionGuid=15E0F9BC4CC5149CC7604BAD5CE9C9A1
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionAdd_38"
+      A=(Expression=MaterialExpressionTextureSample'M_Metal_Burnished_Steel:MaterialExpressionTextureSample_50',OutputIndex=1,Mask=1,MaskR=1)
+      ConstB=0.500000
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-1220
+      MaterialExpressionGuid=E84BB3D249F5CDDDE30F13B3D98D5E57
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionAdd_39"
+      A=(Expression=MaterialExpressionTextureSample'M_Metal_Burnished_Steel:MaterialExpressionTextureSample_51',OutputIndex=1,Mask=1,MaskR=1)
+      ConstB=0.500000
+      MaterialExpressionEditorX=-1300
+      MaterialExpressionEditorY=-1000
+      MaterialExpressionGuid=62E1C3AD471293074B3E8DAED322B7CB
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionComment_62"
+      SizeX=832
+      SizeY=747
+      Text="Macro Texture Variation"
+      MaterialExpressionEditorX=-1940
+      MaterialExpressionEditorY=-1500
+      MaterialExpressionGuid=4B22A00546865E2AC5B30E8E301BB677
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionComment_63"
+      SizeX=620
+      SizeY=500
+      Text="Alpha Of Base Color Defines Roughness"
+      MaterialExpressionEditorY=-500
+      MaterialExpressionGuid=D490A1BC43B783A12E6961AA47458431
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionComment_67"
+      SizeX=420
+      SizeY=360
+      Text="NormalTextureSamples"
+      MaterialExpressionEditorX=140
+      MaterialExpressionEditorY=240
+      MaterialExpressionGuid=F65A99034AB820B225397CAEDF34EA6F
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionComment_68"
+      SizeX=400
+      SizeY=340
+      Text="BaseColorTextureSamples"
+      MaterialExpressionEditorX=-920
+      MaterialExpressionEditorY=-540
+      MaterialExpressionGuid=EFD1B4584E0F9B7E72460ABECFB44BBF
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionComment_71"
+      SizeX=472
+      SizeY=440
+      Text="Reduce Macro Contrast"
+      MaterialExpressionEditorX=-520
+      MaterialExpressionEditorY=-1600
+      MaterialExpressionGuid=284D59FA4413D6434170DBA2457DC51E
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_13"
+      R=1.000000
+      MaterialExpressionEditorX=720
+      MaterialExpressionEditorY=-340
+      MaterialExpressionGuid=04156C734A01DEBC754D70B91C8B89EF
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionConstant_73"
+      R=0.300000
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=-380
+      MaterialExpressionGuid=E57DB59846C70077687B349D69B2ED97
+      Material=Material'M_Metal_Burnished_Steel'
+      Desc="RoughnessMax"
+   End Object
+   Begin Object Name="MaterialExpressionConstant_74"
+      R=0.100000
+      MaterialExpressionEditorX=120
+      MaterialExpressionEditorY=-240
+      MaterialExpressionGuid=8D06EC07466A3A533E4B1AB313F654A4
+      Material=Material'M_Metal_Burnished_Steel'
+      Desc="RoughnessMin"
+   End Object
+   Begin Object Name="MaterialExpressionConstant3Vector_18"
+      Constant=(R=0.500000,G=0.500000,B=0.500000,A=0.000000)
+      MaterialExpressionEditorX=-460
+      MaterialExpressionEditorY=-1540
+      MaterialExpressionGuid=AE5A53014B678FEF863BE79A2AE6C6E1
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_37"
+      A=(Expression=MaterialExpressionConstant'M_Metal_Burnished_Steel:MaterialExpressionConstant_73')
+      B=(Expression=MaterialExpressionConstant'M_Metal_Burnished_Steel:MaterialExpressionConstant_74')
+      Alpha=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_82')
+      ConstA=1.000000
+      ConstB=0.000000
+      MaterialExpressionEditorX=340
+      MaterialExpressionEditorY=-220
+      MaterialExpressionGuid=C71617704F5F62D1527D74A429052D5E
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionLinearInterpolate_46"
+      A=(Expression=MaterialExpressionConstant3Vector'M_Metal_Burnished_Steel:MaterialExpressionConstant3Vector_18')
+      Alpha=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_81')
+      MaterialExpressionEditorX=-240
+      MaterialExpressionEditorY=-1360
+      MaterialExpressionGuid=07FA6F03428F0D8A3E5AD187F9946241
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_75"
+      A=(Expression=MaterialExpressionLinearInterpolate'M_Metal_Burnished_Steel:MaterialExpressionLinearInterpolate_46')
+      B=(Expression=MaterialExpressionTextureSample'M_Metal_Burnished_Steel:MaterialExpressionTextureSample_46',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+      MaterialExpressionEditorX=200
+      MaterialExpressionEditorY=-800
+      MaterialExpressionGuid=4AC5D7F843DB6881302091B2576C927B
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_77"
+      A=(Expression=MaterialExpressionTextureCoordinate'M_Metal_Burnished_Steel:MaterialExpressionTextureCoordinate_37')
+      ConstB=0.213400
+      MaterialExpressionEditorX=-1700
+      MaterialExpressionEditorY=-1440
+      MaterialExpressionGuid=4F78B20D464B510A445DBD8011D9B5CC
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_78"
+      A=(Expression=MaterialExpressionTextureCoordinate'M_Metal_Burnished_Steel:MaterialExpressionTextureCoordinate_38')
+      ConstB=0.053410
+      MaterialExpressionEditorX=-1700
+      MaterialExpressionEditorY=-1240
+      MaterialExpressionGuid=7ABB30B841F9054505F6E0BF3575A002
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_79"
+      A=(Expression=MaterialExpressionTextureCoordinate'M_Metal_Burnished_Steel:MaterialExpressionTextureCoordinate_39')
+      ConstB=0.002000
+      MaterialExpressionEditorX=-1680
+      MaterialExpressionEditorY=-1020
+      MaterialExpressionGuid=B63B4B824D08C910AA8BD1ADAAE6A02E
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_80"
+      A=(Expression=MaterialExpressionAdd'M_Metal_Burnished_Steel:MaterialExpressionAdd_38')
+      B=(Expression=MaterialExpressionAdd'M_Metal_Burnished_Steel:MaterialExpressionAdd_39')
+      MaterialExpressionEditorX=-1060
+      MaterialExpressionEditorY=-1100
+      MaterialExpressionGuid=47D28401450A38780AB17C99E6DDE922
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_81"
+      A=(Expression=MaterialExpressionAdd'M_Metal_Burnished_Steel:MaterialExpressionAdd_37')
+      B=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_80')
+      MaterialExpressionEditorX=-880
+      MaterialExpressionEditorY=-1220
+      MaterialExpressionGuid=35ABB3774A3C572D3F56759B976E85F0
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionMultiply_82"
+      A=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_81')
+      B=(Expression=MaterialExpressionTextureSample'M_Metal_Burnished_Steel:MaterialExpressionTextureSample_46',OutputIndex=4,Mask=1,MaskA=1)
+      MaterialExpressionEditorX=-200
+      MaterialExpressionEditorY=-260
+      MaterialExpressionGuid=F352512F4E625D2728F101BD57BE4C56
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_37"
+      MaterialExpressionEditorX=-1840
+      MaterialExpressionEditorY=-1420
+      MaterialExpressionGuid=2E4100F54ACC3801D5127A9FCDF50676
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_38"
+      MaterialExpressionEditorX=-1840
+      MaterialExpressionEditorY=-1240
+      MaterialExpressionGuid=B124D99C45D0CCD1426BE49DC4155CDB
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureCoordinate_39"
+      MaterialExpressionEditorX=-1880
+      MaterialExpressionEditorY=-1000
+      MaterialExpressionGuid=402EBA614DE33C72823BE9AF70AC5B96
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_46"
+      Texture=Texture2D'/Game/StarterContent/Textures/T_Metal_Aluminum_D.T_Metal_Aluminum_D'
+      MaterialExpressionEditorX=-860
+      MaterialExpressionEditorY=-460
+      MaterialExpressionGuid=14B999CE40778C9AEC0112828F74A2A5
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_47"
+      Texture=Texture2D'/Game/StarterContent/Textures/T_Metal_Gold_N.T_Metal_Gold_N'
+      SamplerType=SAMPLERTYPE_Normal
+      MaterialExpressionEditorX=280
+      MaterialExpressionEditorY=340
+      MaterialExpressionGuid=43A8369A4F49357FB581E6A49D24552F
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_49"
+      Coordinates=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_77')
+      Texture=Texture2D'/Game/StarterContent/Textures/T_MacroVariation.T_MacroVariation'
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=-1440
+      MaterialExpressionGuid=123D29C04A98CCF240C6238DD795146B
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_50"
+      Coordinates=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_78')
+      Texture=Texture2D'/Game/StarterContent/Textures/T_MacroVariation.T_MacroVariation'
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=-1240
+      MaterialExpressionGuid=0DC429D6417FC5C80C536C92D194CB11
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="MaterialExpressionTextureSample_51"
+      Coordinates=(Expression=MaterialExpressionMultiply'M_Metal_Burnished_Steel:MaterialExpressionMultiply_79')
+      Texture=Texture2D'/Game/StarterContent/Textures/T_MacroVariation.T_MacroVariation'
+      MaterialExpressionEditorX=-1500
+      MaterialExpressionEditorY=-1020
+      MaterialExpressionGuid=277EBC5842145042E43432A6BBAFA05E
+      Material=Material'M_Metal_Burnished_Steel'
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   BaseColor=(Expression=MaterialExpressionMultiply'MaterialExpressionMultiply_75')
+   Metallic=(Expression=MaterialExpressionConstant'MaterialExpressionConstant_13')
+   Specular=(OutputIndex=2,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Roughness=(Expression=MaterialExpressionLinearInterpolate'MaterialExpressionLinearInterpolate_37')
+   Normal=(Expression=MaterialExpressionTextureSample'MaterialExpressionTextureSample_47',Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   EmissiveColor=(OutputIndex=4,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   Opacity=(OutputIndex=5,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   OpacityMask=(OutputIndex=6,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   WorldPositionOffset=(OutputIndex=8,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   WorldDisplacement=(OutputIndex=9,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   TessellationMultiplier=(OutputIndex=10,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   SubsurfaceColor=(OutputIndex=11,Mask=1,MaskR=1,MaskG=1,MaskB=1)
+   AmbientOcclusion=(OutputIndex=4,Mask=1,MaskA=1)
+   Refraction=(OutputIndex=13,Mask=1,MaskR=1,MaskG=1)
+   bUsedWithStaticLighting=True
+   EditorX=720
+   EditorY=-304
+   Expressions(0)=MaterialExpressionMultiply'MaterialExpressionMultiply_75'
+   Expressions(1)=MaterialExpressionConstant'MaterialExpressionConstant_13'
+   Expressions(2)=MaterialExpressionLinearInterpolate'MaterialExpressionLinearInterpolate_37'
+   Expressions(3)=MaterialExpressionTextureSample'MaterialExpressionTextureSample_47'
+   Expressions(4)=MaterialExpressionTextureSample'MaterialExpressionTextureSample_46'
+   Expressions(5)=MaterialExpressionConstant'MaterialExpressionConstant_73'
+   Expressions(6)=MaterialExpressionConstant'MaterialExpressionConstant_74'
+   Expressions(7)=MaterialExpressionTextureSample'MaterialExpressionTextureSample_49'
+   Expressions(8)=MaterialExpressionTextureCoordinate'MaterialExpressionTextureCoordinate_37'
+   Expressions(9)=MaterialExpressionMultiply'MaterialExpressionMultiply_77'
+   Expressions(10)=MaterialExpressionAdd'MaterialExpressionAdd_37'
+   Expressions(11)=MaterialExpressionTextureSample'MaterialExpressionTextureSample_50'
+   Expressions(12)=MaterialExpressionTextureCoordinate'MaterialExpressionTextureCoordinate_38'
+   Expressions(13)=MaterialExpressionMultiply'MaterialExpressionMultiply_78'
+   Expressions(14)=MaterialExpressionAdd'MaterialExpressionAdd_38'
+   Expressions(15)=MaterialExpressionTextureSample'MaterialExpressionTextureSample_51'
+   Expressions(16)=MaterialExpressionTextureCoordinate'MaterialExpressionTextureCoordinate_39'
+   Expressions(17)=MaterialExpressionMultiply'MaterialExpressionMultiply_79'
+   Expressions(18)=MaterialExpressionAdd'MaterialExpressionAdd_39'
+   Expressions(19)=MaterialExpressionMultiply'MaterialExpressionMultiply_80'
+   Expressions(20)=MaterialExpressionMultiply'MaterialExpressionMultiply_81'
+   Expressions(21)=MaterialExpressionMultiply'MaterialExpressionMultiply_82'
+   Expressions(22)=MaterialExpressionLinearInterpolate'MaterialExpressionLinearInterpolate_46'
+   Expressions(23)=MaterialExpressionConstant3Vector'MaterialExpressionConstant3Vector_18'
+   EditorComments(0)=MaterialExpressionComment'MaterialExpressionComment_62'
+   EditorComments(1)=MaterialExpressionComment'MaterialExpressionComment_63'
+   EditorComments(2)=MaterialExpressionComment'MaterialExpressionComment_67'
+   EditorComments(3)=MaterialExpressionComment'MaterialExpressionComment_68'
+   EditorComments(4)=MaterialExpressionComment'MaterialExpressionComment_71'
+   StateId=A4C08E394CC45505F1D1559D22EDBF1A
+   ReferencedTextureGuids(0)=D02218B84AE96463B80BAEBDCE6D5610
+   ReferencedTextureGuids(1)=0C068365468906DC61E61398C2297CBA
+   ReferencedTextureGuids(2)=61749BCE45241F5407075691CB85C2E9
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'SceneThumbnailInfoWithPrimitive_0'
+   LightingGuid=77E280FB48325E8E8DC7AE8E4FD0EC6B
+End Object

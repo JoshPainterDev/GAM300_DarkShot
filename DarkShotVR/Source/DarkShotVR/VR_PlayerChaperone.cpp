@@ -132,7 +132,7 @@ void AVR_PlayerChaperone::UpdateTension(float DeltaTime)
 	float c = DeltaTime;
 	++c;
 	if (_arrowManager->_isArrowAttachedToBow == true)
-		_arrowManager->_bowTension = FMath::Abs( DistanceBetweenHands() - 20.0);
+		_arrowManager->_bowTension = FMath::Clamp(FMath::Abs( DistanceBetweenHands() - 20.0), 0.0, 50.0);
 
 	// TODO: keep track of how long we are at max tension
 }
@@ -190,6 +190,8 @@ void AVR_PlayerChaperone::Tick(float DeltaTime)
 	if (_arrowManager->_isArrowAttachedToHand && _triggerPressed)
 		AttachArrow();
 
+	if (_arrowManager->_isArrowAttachedToBow)
+		_arrowManager->UpdateArrowPos();
 	// On Trigger IE_Pressed
 	// get distance between hands
 	// if appropriate value
@@ -216,7 +218,7 @@ void AVR_PlayerChaperone::TriggerReleased()
 void AVR_PlayerChaperone::AttachArrow()
 {
 	if (DistanceBetweenHands() < 20)
-		_arrowManager->AttachToBow(L_MotionControllerScene);
+		_arrowManager->AttachToBow(L_MotionControllerScene, 1u);
 }
 
 // Called to bind functionality to input

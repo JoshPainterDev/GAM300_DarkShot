@@ -4,11 +4,14 @@
 #include "ArrowManager.h"
 
 
-#define BOWTENSIONSCALAR 48
-#define BASEARROWSPEED 450
-#define MIDARROWROT FRotator(-90, 0, 0)
-#define LEFTARROWROT FRotator(-30, 0, 0)
-#define RIGHTARROWROT FRotator(30, 0, 0)
+#define BOWTENSIONSCALAR 55
+#define BASEARROWSPEED 400
+#define MIDARROWROT FRotator(-90, -5, 0)
+#define LEFTARROWROT FRotator(-30, -5, 0)
+#define RIGHTARROWROT FRotator(30, -5, 0)
+#define MIDARROWLOC FVector(3, -1, -40)
+#define LEFTARROWLOC FVector(0, -1, 0)
+#define RIGHTARROWLOC FVector(0, -1, 0)
 // Sets default values for this component's properties
 UArrowManager::UArrowManager()
 {
@@ -43,6 +46,31 @@ void UArrowManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorCo
 	// ...
 }
 
+void UArrowManager::UpdateArrowPos()
+{
+	//for (auto i = 0; i < 10; i++)
+		//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::White, CurrentArrow->GetActorLocation().ToString());
+
+
+	if (arrowsLoaded == 2)
+	{
+		RightSplitArrow->SetActorRelativeLocation(FVector(RIGHTARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+		LeftSplitArrow->SetActorRelativeLocation(FVector(LEFTARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+		return;
+	}
+	else if (arrowsLoaded == 3)
+	{
+		RightSplitArrow->SetActorRelativeLocation(FVector(RIGHTARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+		LeftSplitArrow->SetActorRelativeLocation(FVector(LEFTARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+		CurrentArrow->SetActorRelativeLocation(FVector(MIDARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+		return;
+	}
+	else
+	{
+		CurrentArrow->SetActorRelativeLocation(FVector(MIDARROWLOC.X, MIDARROWLOC.Y, MIDARROWLOC.Z + _bowTension));
+	}
+}
+
 void UArrowManager::SpawnAndAttachArrow(USceneComponent* R_MotionControllerScene)
 {
 	auto map = GetBluePrintMap();
@@ -68,6 +96,7 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 	auto map = GetBluePrintMap();
 	if (_toggleEquipment == false)
 	{
+		_toggleEquipment = false;
 		// unload equipment
 		CurrentArrow->Destroy();
 		CurrentArrow = GetWorld()->SpawnActor((*map)[FName("StandardArrow")]->GeneratedClass);
@@ -88,6 +117,7 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 	}
 	else
 	{
+		_toggleEquipment = true;
 		// load equipment
 		switch (EquipmentType)
 		{
@@ -177,6 +207,9 @@ void UArrowManager::ToggleEquipment(USceneComponent* L_MotionControllerScene)
 
 void UArrowManager::ShootArrow()
 {
+	//reset the equipment loading variable
+	_toggleEquipment = false;
+
 	FDetachmentTransformRules rules(EDetachmentRule::KeepWorld, EDetachmentRule::KeepWorld, EDetachmentRule::KeepRelative, true);
 	CurrentArrow->DetachFromActor(rules);
 	_isArrowAttachedToBow = false;
@@ -225,7 +258,7 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene, unsign
 		FAttachmentTransformRules attachment(EAttachmentRule::SnapToTarget, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, true);
 		CurrentArrow->AttachToComponent(L_MotionControllerScene, attachment);
 
-		CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		CurrentArrow->SetActorRelativeLocation(MIDARROWLOC);
 		CurrentArrow->SetActorRelativeRotation(MIDARROWROT);
 	}
 	else if (numArrows == 2)
@@ -239,10 +272,10 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene, unsign
 		RightSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
 		LeftSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
 		//Set relative transform of Right Arrow
-		RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		RightSplitArrow->SetActorRelativeLocation(RIGHTARROWLOC);
 		RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
 		//Set relative transform of Left Arrow
-		LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		LeftSplitArrow->SetActorRelativeLocation(LEFTARROWLOC);
 		LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
 	}
 	else if (numArrows == 3)
@@ -258,13 +291,13 @@ void UArrowManager::AttachToBow(USceneComponent* L_MotionControllerScene, unsign
 		RightSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
 		LeftSplitArrow->AttachToComponent(L_MotionControllerScene, attachment);
 		//Set relative transform of Middle Arrow
-		CurrentArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		CurrentArrow->SetActorRelativeLocation(MIDARROWLOC);
 		CurrentArrow->SetActorRelativeRotation(MIDARROWROT);
 		//Set relative transform of Right Arrow
-		RightSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		RightSplitArrow->SetActorRelativeLocation(RIGHTARROWLOC);
 		RightSplitArrow->SetActorRelativeRotation(RIGHTARROWROT);
 		//Set relative transform of Left Arrow
-		LeftSplitArrow->SetActorRelativeLocation(FVector(-1, -1, 0));
+		LeftSplitArrow->SetActorRelativeLocation(LEFTARROWLOC);
 		LeftSplitArrow->SetActorRelativeRotation(LEFTARROWROT);
 	}
 
